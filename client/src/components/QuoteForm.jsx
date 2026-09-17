@@ -8,6 +8,7 @@ import { useState } from 'react';
 import Button from './Button';
 import { company } from '../data/company';
 
+
 const COUNTRIES = [
   'Saudi Arabia', 'United States', 'India', 'United Arab Emirates',
   'Kuwait', 'Qatar', 'Bahrain', 'Oman', 'Jordan', 'Egypt',
@@ -15,18 +16,19 @@ const COUNTRIES = [
 ];
 
 const initialState = {
-  name:        '',
-  company:     '',
-  email:       '',
-  phone:       '',
-  country:     '',
+  name: '',
+  company: '',
+  email: '',
+  phone: '',
+  country: '',
   requirement: '',
-  quantity:    '',
-  project:     '',
-  details:     '',
-  file:        null,
+  quantity: '',
+  project: '',
+  details: '',
+  file: null,
 };
 
+const api_Key = import.meta.env.VITE_ACESS_KEY;
 const QuoteForm = ({ onSuccess }) => {
   const [form, setForm] = useState(initialState);
   const [submitted, setSubmitted] = useState(false);
@@ -44,17 +46,30 @@ const QuoteForm = ({ onSuccess }) => {
     e.preventDefault();
     setLoading(true);
 
-    // ── Future API integration point ──────────────────────────
-    // Replace this block with your API call:
-    //   await fetch('/api/quote', { method: 'POST', body: JSON.stringify(form) });
-    // The submission email address is: company.headquarters.email
-    //
-    // For now, simulate a short delay and show success.
-    await new Promise((r) => setTimeout(r, 800));
+    const form_data = {
+      access_key: api_Key,
+      ...form
+    };
 
-    setLoading(false);
-    setSubmitted(true);
-    if (onSuccess) onSuccess(form);
+    const res = await fetch("https://api.web3forms.com/submit", {
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      method: "POST",
+      body: JSON.stringify(form_data),
+
+    });
+    const data = await res.json();
+
+    if (data.success) {
+      setLoading(false);
+      setSubmitted(true);
+      if (onSuccess) onSuccess(form);
+    } else {
+      setLoading(false);
+      alert(data.message);
+    }
   };
 
   /* ── Field helper ── */
@@ -72,7 +87,7 @@ const QuoteForm = ({ onSuccess }) => {
       <div className="py-16 text-center">
         <div className="inline-block w-10 h-10 border-2 border-[var(--color-secondary)] rounded-full flex items-center justify-center mb-6 mx-auto">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-            <path d="M3 8l3.5 3.5L13 4.5" stroke="var(--color-secondary)" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M3 8l3.5 3.5L13 4.5" stroke="var(--color-secondary)" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         </div>
         <h3 className="text-subheading mb-3">Requirement received.</h3>
@@ -241,7 +256,7 @@ const QuoteForm = ({ onSuccess }) => {
         />
       </div>
 
-      {/* Row 7 — File Upload */}
+      {/* Row 7 — File Upload
       <div>
         <label htmlFor="quote-file" className={labelClass}>
           Attach File{' '}
@@ -258,7 +273,7 @@ const QuoteForm = ({ onSuccess }) => {
           className="block w-full text-sm text-[var(--color-muted)] file:mr-4 file:py-2 file:px-4 file:border file:border-[var(--color-border)] file:bg-transparent file:text-xs file:font-semibold file:tracking-[0.08em] file:uppercase file:text-[var(--color-text)] file:cursor-pointer hover:file:border-[var(--color-primary)] file:transition-colors"
         />
         <p className="text-meta mt-2">PDF, Word, Excel or image files. Max 10MB.</p>
-      </div>
+      </div> */}
 
       {/* Submit */}
       <div className="pt-2 border-t border-[var(--color-border)]">
