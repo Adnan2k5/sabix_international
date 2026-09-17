@@ -25,7 +25,6 @@ const initialState = {
   quantity: '',
   project: '',
   details: '',
-  file: null,
 };
 
 const api_Key = import.meta.env.VITE_ACESS_KEY;
