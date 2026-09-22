@@ -3,6 +3,7 @@
  */
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import Button from '../components/Button';
 import SectionHeading from '../components/SectionHeading';
 import CTASection from '../components/CTASection';
@@ -28,7 +29,17 @@ const FadeIn = ({ children, delay = 0, className = '' }) => {
 
 const category = getCategoryBySlug('spare-parts');
 
-const SpareParts = () => (
+const operationalItemKeys = [
+  'Aluminium system replacement parts',
+  'Glass hardware spare components',
+  'Factory and industrial spare parts',
+  'Project-specific sourcing',
+];
+
+const SpareParts = () => {
+  const { t } = useTranslation();
+
+  return (
   <>
     {/* ── Hero ── */}
     <section
@@ -51,14 +62,14 @@ const SpareParts = () => (
           {category.number} — {category.accentLabel}
         </motion.p>
         <motion.h1 className="text-headline text-white mb-6" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.65, delay: 0.1 }}>
-          {category.title}
+          {t(category.title)}
         </motion.h1>
         <motion.p className="text-body-lg mb-8" style={{ color: 'rgba(255,255,255,0.55)', maxWidth: '56ch' }} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }}>
-          {category.description}
+          {t(category.description)}
         </motion.p>
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.35 }}>
           <Button href="#enquire" variant="secondary" arrow size="md" id="spareparts-hero-cta">
-            Tell us the part you need
+            {t('Tell us the part you need')}
           </Button>
         </motion.div>
       </div>
@@ -70,21 +81,16 @@ const SpareParts = () => (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <FadeIn>
             <SectionHeading
-              eyebrow="Operational Continuity"
-              title="The right part. When your operation needs it."
-              description="A missing spare part can halt operations, delay projects, and generate significant costs. SABIX sources replacement components and spare parts to help keep your operations running."
+              eyebrow={t('Operational Continuity')}
+              title={t('The right part. When your operation needs it.')}
+              description={t('A missing spare part can halt operations, delay projects, and generate significant costs. SABIX sources replacement components and spare parts to help keep your operations running.')}
               className="mb-10"
             />
             <div className="flex flex-col gap-4">
-              {[
-                'Aluminium system replacement parts',
-                'Glass hardware spare components',
-                'Factory and industrial spare parts',
-                'Project-specific sourcing',
-              ].map((item, i) => (
+              {operationalItemKeys.map((key, i) => (
                 <div key={i} className="flex items-start gap-4 py-4 border-b border-[var(--color-border)]">
                   <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full mt-2" style={{ backgroundColor: 'var(--color-secondary)' }} />
-                  <span className="text-sm font-medium">{item}</span>
+                  <span className="text-sm font-medium">{t(key)}</span>
                 </div>
               ))}
             </div>
@@ -107,21 +113,52 @@ const SpareParts = () => (
       <div className="container section-padding">
         <FadeIn className="mb-14">
           <SectionHeading
-            eyebrow="Supply Categories"
-            title="Where we can source."
+            eyebrow={t('Supply Categories')}
+            title={t('Where we can source.')}
           />
         </FadeIn>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-px" style={{ backgroundColor: 'var(--color-border)' }}>
-          {category.families.map((family, i) => (
+          {category.families.filter(f => f.id !== 'and-more').map((family, i) => (
             <FadeIn key={family.id} delay={i * 0.05}>
               <div className="p-10 flex flex-col gap-3" style={{ backgroundColor: 'var(--color-background)', minHeight: 180 }}>
                 <span className="text-index text-[var(--color-secondary)]">{String(i + 1).padStart(2, '0')}</span>
-                <h3 className="text-subheading text-base font-semibold">{family.name}</h3>
-                <p className="text-sm text-[var(--color-muted)] leading-relaxed">{family.description}</p>
+                <h3 className="text-subheading text-base font-semibold">{t(family.name)}</h3>
+                <p className="text-sm text-[var(--color-muted)] leading-relaxed">{t(family.description)}</p>
               </div>
             </FadeIn>
           ))}
         </div>
+
+        {/* And More */}
+        <FadeIn delay={0.15} className="mt-px">
+          <div
+            className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 p-10"
+            style={{ backgroundColor: 'var(--color-primary)' }}
+          >
+            <div>
+              <p className="text-eyebrow mb-2" style={{ color: 'var(--color-secondary)' }}>{t('And More')}</p>
+              <h3
+                className="font-light text-white"
+                style={{ fontSize: 'clamp(1.25rem, 2.5vw, 1.75rem)', letterSpacing: '-0.02em' }}
+              >
+                {t('Our sourcing reach extends beyond standard categories.')}
+              </h3>
+              <p className="text-sm mt-2" style={{ color: 'rgba(255,255,255,0.5)', maxWidth: '52ch' }}>
+                {t('Tell us the part you need — reference, specification, or a sample description. Our team will work to source it from trusted suppliers across international markets.')}
+              </p>
+            </div>
+            <a
+              href="#enquire"
+              className="flex-shrink-0 inline-flex items-center gap-2 text-[0.75rem] font-semibold tracking-[0.08em] uppercase transition-colors"
+              style={{ color: 'var(--color-secondary)' }}
+            >
+              <span>{t('Tell us what you need')}</span>
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </a>
+          </div>
+        </FadeIn>
       </div>
     </section>
 
@@ -130,18 +167,15 @@ const SpareParts = () => (
       <div className="container section-padding">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
           <FadeIn className="lg:col-span-4">
-            <p className="text-eyebrow-accent mb-4">Sourcing enquiry</p>
+            <p className="text-eyebrow-accent mb-4">{t('Sourcing enquiry')}</p>
             <h2 className="text-title mb-5">
-              Tell us the part you need.
+              {t('Tell us the part you need.')}
             </h2>
             <p className="text-body text-[var(--color-muted)] mb-8" style={{ maxWidth: '38ch' }}>
-              Describe the spare part or replacement component your operation or project
-              requires. Include the reference, specification, or a sample description — our
-              team will work to source it.
+              {t('Describe the spare part or replacement component your operation or project requires. Include the reference, specification, or a sample description — our team will work to source it.')}
             </p>
             <p className="text-meta">
-              SABIX handles sourcing for both standard and project-specific replacement
-              requirements.
+              {t('SABIX handles sourcing for both standard and project-specific replacement requirements.')}
             </p>
           </FadeIn>
           <FadeIn delay={0.1} className="lg:col-span-7 lg:col-start-6">
@@ -154,15 +188,16 @@ const SpareParts = () => (
     {/* ── CTA ── */}
     <CTASection
       id="spareparts-page-cta"
-      eyebrow="Spare Parts"
-      headline="Need a part sourced?"
-      body="Share the reference or description. Our team will work to source and supply the replacement component your operation requires."
-      primaryLabel="Submit Requirement"
+      eyebrow={t('Spare Parts')}
+      headline={t('Need a part sourced?')}
+      body={t('Share the reference or description. Our team will work to source and supply the replacement component your operation requires.')}
+      primaryLabel={t('Submit Requirement')}
       primaryHref="#enquire"
-      secondaryLabel="Back to all categories"
+      secondaryLabel={t('Back to all categories')}
       secondaryTo="/"
     />
   </>
-);
+  );
+};
 
 export default SpareParts;

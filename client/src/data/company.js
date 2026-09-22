@@ -9,54 +9,62 @@
  */
 
 export const company = {
-  name:      'SABIX International Co. Ltd.',
+  name: 'SABIX International Co. Ltd.',
   shortName: 'SABIX',
-  tagline:   'International Industrial Supply',
+  tagline: 'International Industrial Supply',
+  yearsOfExcellence: 30,
+
+  // ── Sales Team Contact ─────────────────────────────────────
+  sales: {
+    email: 'sales@sabixinternational.com', // [REPLACE] with actual sales email
+    phone: '+966 11 000 0000',             // [REPLACE] with actual sales phone
+  },
+
   description:
     'SABIX International Co. Ltd. is an international trading and supply company specialising in aluminium, glass hardware, tools, spare parts and project-specific industrial requirements. Serving contractors, factories, government projects and industrial businesses across international markets.',
 
   // ── Headquarters ────────────────────────────────────────────
   headquarters: {
-    label:   'Headquarters',
-    city:    'Riyadh',
+    label: 'Headquarters',
+    city: 'Riyadh',
     country: 'Saudi Arabia',
     address: null,                     // [REPLACE] Full address string
-    phone:   null,                     // [REPLACE] e.g. '+966 11 XXX XXXX'
-    email:   null,                     // [REPLACE] e.g. 'info@sabix.com'
+    phone: null,                     // [REPLACE] e.g. '+966 11 XXX XXXX'
+    email: null,                     // [REPLACE] e.g. 'info@sabix.com'
     coordinates: { lat: 24.7136, lng: 46.6753 },
   },
 
   // ── Branch Offices ───────────────────────────────────────────
   branches: [
     {
-      label:   'Branch',
-      city:    null,                   // [REPLACE] US city
+      label: 'Branch',
+      city: null,                   // [REPLACE] US city
       country: 'United States',
       address: null,                   // [REPLACE]
-      phone:   null,                   // [REPLACE]
-      email:   null,                   // [REPLACE]
+      phone: null,                   // [REPLACE]
+      email: null,                   // [REPLACE]
     },
     {
-      label:   'Branch',
-      city:    null,                   // [REPLACE] India city
+      label: 'Branch',
+      city: null,                   // [REPLACE] India city
       country: 'India',
       address: null,                   // [REPLACE]
-      phone:   null,                   // [REPLACE]
-      email:   null,                   // [REPLACE]
+      phone: null,                   // [REPLACE]
+      email: null,                   // [REPLACE]
     },
   ],
 
   // ── Social Media ────────────────────────────────────────────
   social: {
     linkedin: null,                    // [REPLACE] Full LinkedIn URL
-    twitter:  null,                    // [REPLACE] Full X/Twitter URL
+    twitter: null,                    // [REPLACE] Full X/Twitter URL
     instagram: null,                   // [REPLACE] Full Instagram URL
   },
 
   // ── Legal ───────────────────────────────────────────────────
   legal: {
     privacyPolicyUrl: '#',             // [REPLACE] with actual page route
-    termsUrl:         '#',             // [REPLACE] with actual page route
+    termsUrl: '#',             // [REPLACE] with actual page route
     get copyright() {
       return `© ${new Date().getFullYear()} SABIX International Co. Ltd. All rights reserved.`;
     },

@@ -18,51 +18,65 @@
    ------------------------------------------------------------ */
 :root {
   /* Brand Colors */
-  --color-primary:    #242424;
-  --color-secondary:  #E87524;
+  --color-primary: #242424;
+  --color-secondary: #E87524;
   --color-background: #F5F5F2;
-  --color-surface:    #FFFFFF;
-  --color-text:       #1C1C1C;
-  --color-muted:      #8A8A8A;
-  --color-border:     #D9D9D5;
+  --color-surface: #FFFFFF;
+  --color-text: #1C1C1C;
+  --color-muted: #8A8A8A;
+  --color-border: #D9D9D5;
 
   /* Derived */
-  --color-primary-hover:   #363636;
+  --color-primary-hover: #363636;
   --color-secondary-hover: #d4681a;
-  --color-overlay:         rgba(28, 28, 28, 0.55);
+  --color-overlay: rgba(28, 28, 28, 0.55);
 
   /* Typography Scale */
   --font-sans: 'Manrope', system-ui, sans-serif;
 
-  --text-xs:   0.6875rem;  /* 11px */
-  --text-sm:   0.8125rem;  /* 13px */
-  --text-base: 1rem;       /* 16px */
-  --text-lg:   1.125rem;   /* 18px */
-  --text-xl:   1.25rem;    /* 20px */
-  --text-2xl:  1.5rem;     /* 24px */
-  --text-3xl:  1.875rem;   /* 30px */
-  --text-4xl:  2.5rem;     /* 40px */
-  --text-5xl:  3.25rem;    /* 52px */
-  --text-6xl:  4.5rem;     /* 72px */
-  --text-7xl:  6rem;       /* 96px */
+  --text-xs: 0.6875rem;
+  /* 11px */
+  --text-sm: 0.8125rem;
+  /* 13px */
+  --text-base: 1rem;
+  /* 16px */
+  --text-lg: 1.125rem;
+  /* 18px */
+  --text-xl: 1.25rem;
+  /* 20px */
+  --text-2xl: 1.5rem;
+  /* 24px */
+  --text-3xl: 1.875rem;
+  /* 30px */
+  --text-4xl: 2.5rem;
+  /* 40px */
+  --text-5xl: 3.25rem;
+  /* 52px */
+  --text-6xl: 4.5rem;
+  /* 72px */
+  --text-7xl: 6rem;
+  /* 96px */
 
   /* Spacing */
-  --space-section: 6rem;        /* 96px — section vertical padding */
-  --space-section-sm: 4rem;     /* 64px — tablet */
-  --space-section-xs: 3rem;     /* 48px — mobile */
+  --space-section: 6rem;
+  /* 96px — section vertical padding */
+  --space-section-sm: 4rem;
+  /* 64px — tablet */
+  --space-section-xs: 3rem;
+  /* 48px — mobile */
 
   /* Grid */
   --container-max: 1440px;
-  --container-px:  2rem;
+  --container-px: 2rem;
   --container-px-sm: 1.25rem;
   --container-px-xs: 1rem;
 
   /* Motion */
-  --duration-fast:   150ms;
-  --duration-base:   300ms;
-  --duration-slow:   500ms;
+  --duration-fast: 150ms;
+  --duration-base: 300ms;
+  --duration-slow: 500ms;
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-in-out:   cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
 
   /* Borders */
   --radius-sm: 2px;
@@ -73,7 +87,9 @@
 /* ------------------------------------------------------------
    RESET & BASE
    ------------------------------------------------------------ */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -96,7 +112,8 @@ body {
   overflow-x: hidden;
 }
 
-img, video {
+img,
+video {
   display: block;
   max-width: 100%;
 }
@@ -113,12 +130,15 @@ button {
   background: none;
 }
 
-input, textarea, select {
+input,
+textarea,
+select {
   font-family: inherit;
   font-size: inherit;
 }
 
-ul, ol {
+ul,
+ol {
   list-style: none;
 }
 
@@ -232,6 +252,7 @@ ul, ol {
     padding-left: var(--container-px-sm);
     padding-right: var(--container-px-sm);
   }
+
   .section-padding {
     padding-top: var(--space-section-sm);
     padding-bottom: var(--space-section-sm);
@@ -243,6 +264,7 @@ ul, ol {
     padding-left: var(--container-px-xs);
     padding-right: var(--container-px-xs);
   }
+
   .section-padding {
     padding-top: var(--space-section-xs);
     padding-bottom: var(--space-section-xs);
@@ -262,7 +284,10 @@ ul, ol {
    REDUCED MOTION SUPPORT
    ------------------------------------------------------------ */
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;

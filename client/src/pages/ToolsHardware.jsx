@@ -3,6 +3,7 @@
  */
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import Button from '../components/Button';
 import SectionHeading from '../components/SectionHeading';
 import CTASection from '../components/CTASection';
@@ -27,7 +28,10 @@ const FadeIn = ({ children, delay = 0, className = '' }) => {
 
 const category = getCategoryBySlug('tools-hardware');
 
-const ToolsHardware = () => (
+const ToolsHardware = () => {
+  const { t } = useTranslation();
+
+  return (
   <>
     {/* ── Hero ── */}
     <section
@@ -50,14 +54,14 @@ const ToolsHardware = () => (
           {category.number} — {category.accentLabel}
         </motion.p>
         <motion.h1 className="text-headline text-white mb-6" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.65, delay: 0.1 }}>
-          {category.title}
+          {t(category.title)}
         </motion.h1>
         <motion.p className="text-body-lg mb-8" style={{ color: 'rgba(255,255,255,0.55)', maxWidth: '56ch' }} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }}>
-          {category.description}
+          {t(category.description)}
         </motion.p>
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.35 }}>
           <Button href="#quote" variant="secondary" arrow size="md" id="tools-hero-cta">
-            Request a Quote
+            {t('Request a Quote')}
           </Button>
         </motion.div>
       </div>
@@ -68,9 +72,9 @@ const ToolsHardware = () => (
       <div className="container section-padding">
         <FadeIn className="mb-14">
           <SectionHeading
-            eyebrow="Product Families"
-            title="Tools and hardware for industrial requirements."
-            description="From hand tools to factory hardware, SABIX supplies the tools and components your operations and projects require."
+            eyebrow={t('Product Families')}
+            title={t('Tools and hardware for industrial requirements.')}
+            description={t('From hand tools to factory hardware, SABIX supplies the tools and components your operations and projects require.')}
           />
         </FadeIn>
 
@@ -79,8 +83,8 @@ const ToolsHardware = () => (
             <FadeIn key={family.id} delay={i * 0.05}>
               <div className="p-10 flex flex-col gap-3" style={{ backgroundColor: 'var(--color-surface)', minHeight: 200 }}>
                 <span className="text-index text-[var(--color-secondary)]">{String(i + 1).padStart(2, '0')}</span>
-                <h3 className="text-subheading text-base font-semibold">{family.name}</h3>
-                <p className="text-sm text-[var(--color-muted)] leading-relaxed">{family.description}</p>
+                <h3 className="text-subheading text-base font-semibold">{t(family.name)}</h3>
+                <p className="text-sm text-[var(--color-muted)] leading-relaxed">{t(family.description)}</p>
               </div>
             </FadeIn>
           ))}
@@ -101,17 +105,15 @@ const ToolsHardware = () => (
             />
           </FadeIn>
           <FadeIn>
-            <p className="text-eyebrow text-[var(--color-muted)] mb-5">Industrial Focus</p>
+            <p className="text-eyebrow text-[var(--color-muted)] mb-5">{t('Industrial Focus')}</p>
             <h2 className="text-title mb-6">
-              Supporting operations and installations.
+              {t('Supporting operations and installations.')}
             </h2>
             <p className="text-body text-[var(--color-muted)] mb-8" style={{ maxWidth: '48ch' }}>
-              Tools and hardware are required across installation sites, factory floors and
-              project worksites. SABIX provides supply solutions for operational and project
-              requirements — sourced to match your specification.
+              {t('Tools and hardware are required across installation sites, factory floors and project worksites. SABIX provides supply solutions for operational and project requirements — sourced to match your specification.')}
             </p>
             <Button href="#quote" variant="ghost" arrow size="md" id="tools-industrial-cta">
-              Describe your requirement
+              {t('Describe your requirement')}
             </Button>
           </FadeIn>
         </div>
@@ -121,15 +123,16 @@ const ToolsHardware = () => (
     {/* ── CTA ── */}
     <CTASection
       id="tools-page-cta"
-      eyebrow="Tools & Hardware"
-      headline="Have a specific requirement?"
-      body="Tell us the tools or hardware your project or operation requires. Our team will work to source and supply the appropriate solution."
-      primaryLabel="Request a Quote"
+      eyebrow={t('Tools & Hardware')}
+      headline={t('Have a specific requirement?')}
+      body={t('Tell us the tools or hardware your project or operation requires. Our team will work to source and supply the appropriate solution.')}
+      primaryLabel={t('Request a Quote')}
       primaryHref="#quote"
-      secondaryLabel="Back to all categories"
+      secondaryLabel={t('Back to all categories')}
       secondaryTo="/"
     />
   </>
-);
+  );
+};
 
 export default ToolsHardware;

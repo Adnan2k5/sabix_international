@@ -5,15 +5,9 @@
  * Single-column on mobile, two-column on desktop where appropriate.
  */
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import Button from './Button';
 import { company } from '../data/company';
-
-
-const COUNTRIES = [
-  'Saudi Arabia', 'United States', 'India', 'United Arab Emirates',
-  'Kuwait', 'Qatar', 'Bahrain', 'Oman', 'Jordan', 'Egypt',
-  'United Kingdom', 'Germany', 'Other',
-];
 
 const initialState = {
   name: '',
@@ -29,9 +23,16 @@ const initialState = {
 
 const api_Key = import.meta.env.VITE_ACESS_KEY;
 const QuoteForm = ({ onSuccess }) => {
+  const { t } = useTranslation();
   const [form, setForm] = useState(initialState);
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  const COUNTRIES = [
+    t('Saudi Arabia'), t('United States'), t('India'), t('United Arab Emirates'),
+    t('Kuwait'), t('Qatar'), t('Bahrain'), t('Oman'), t('Jordan'), t('Egypt'),
+    t('United Kingdom'), t('Germany'), t('Other'),
+  ];
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
@@ -89,15 +90,15 @@ const QuoteForm = ({ onSuccess }) => {
             <path d="M3 8l3.5 3.5L13 4.5" stroke="var(--color-secondary)" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         </div>
-        <h3 className="text-subheading mb-3">Requirement received.</h3>
+        <h3 className="text-subheading mb-3">{t("Requirement received.")}</h3>
         <p className="text-body text-[var(--color-muted)] max-w-md mx-auto">
-          Thank you. Our team will review your requirement and be in touch shortly.
+          {t("Thank you. Our team will review your requirement and be in touch shortly.")}
         </p>
         <button
           className="mt-8 text-eyebrow text-[var(--color-secondary)] hover:underline"
           onClick={() => setSubmitted(false)}
         >
-          Submit another requirement
+          {t("Submit another requirement")}
         </button>
       </div>
     );
@@ -107,14 +108,14 @@ const QuoteForm = ({ onSuccess }) => {
     <form
       onSubmit={handleSubmit}
       noValidate
-      aria-label="Request a quote form"
+      aria-label={t("Request a quote form")}
       className="space-y-6"
     >
       {/* Row 1 — Name + Company */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         <div>
           <label htmlFor="quote-name" className={labelClass}>
-            Full Name <span aria-hidden="true" className="text-[var(--color-secondary)]">*</span>
+            {t("Full Name")} <span aria-hidden="true" className="text-[var(--color-secondary)]">*</span>
           </label>
           <input
             id="quote-name"
@@ -124,13 +125,13 @@ const QuoteForm = ({ onSuccess }) => {
             autoComplete="name"
             value={form.name}
             onChange={handleChange}
-            placeholder="Your name"
+            placeholder={t("Your name")}
             className={inputClass}
           />
         </div>
         <div>
           <label htmlFor="quote-company" className={labelClass}>
-            Company <span aria-hidden="true" className="text-[var(--color-secondary)]">*</span>
+            {t("Company")} <span aria-hidden="true" className="text-[var(--color-secondary)]">*</span>
           </label>
           <input
             id="quote-company"
@@ -140,7 +141,7 @@ const QuoteForm = ({ onSuccess }) => {
             autoComplete="organization"
             value={form.company}
             onChange={handleChange}
-            placeholder="Company or organisation"
+            placeholder={t("Company or organisation")}
             className={inputClass}
           />
         </div>
@@ -150,7 +151,7 @@ const QuoteForm = ({ onSuccess }) => {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         <div>
           <label htmlFor="quote-email" className={labelClass}>
-            Email <span aria-hidden="true" className="text-[var(--color-secondary)]">*</span>
+            {t("Email")} <span aria-hidden="true" className="text-[var(--color-secondary)]">*</span>
           </label>
           <input
             id="quote-email"
@@ -160,12 +161,12 @@ const QuoteForm = ({ onSuccess }) => {
             autoComplete="email"
             value={form.email}
             onChange={handleChange}
-            placeholder="your@email.com"
+            placeholder={t("your@email.com")}
             className={inputClass}
           />
         </div>
         <div>
-          <label htmlFor="quote-phone" className={labelClass}>Phone</label>
+          <label htmlFor="quote-phone" className={labelClass}>{t("Phone")}</label>
           <input
             id="quote-phone"
             name="phone"
@@ -182,7 +183,7 @@ const QuoteForm = ({ onSuccess }) => {
       {/* Row 3 — Country */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         <div>
-          <label htmlFor="quote-country" className={labelClass}>Country</label>
+          <label htmlFor="quote-country" className={labelClass}>{t("Country")}</label>
           <select
             id="quote-country"
             name="country"
@@ -190,21 +191,21 @@ const QuoteForm = ({ onSuccess }) => {
             onChange={handleChange}
             className={`${inputClass} appearance-none cursor-pointer`}
           >
-            <option value="" disabled>Select country</option>
+            <option value="" disabled>{t("Select country")}</option>
             {COUNTRIES.map((c) => (
               <option key={c} value={c}>{c}</option>
             ))}
           </select>
         </div>
         <div>
-          <label htmlFor="quote-quantity" className={labelClass}>Quantity / Volume</label>
+          <label htmlFor="quote-quantity" className={labelClass}>{t("Quantity / Volume")}</label>
           <input
             id="quote-quantity"
             name="quantity"
             type="text"
             value={form.quantity}
             onChange={handleChange}
-            placeholder="e.g. 500 units, bulk"
+            placeholder={t("e.g. 500 units, bulk")}
             className={inputClass}
           />
         </div>
@@ -213,7 +214,7 @@ const QuoteForm = ({ onSuccess }) => {
       {/* Row 4 — Product / Requirement */}
       <div>
         <label htmlFor="quote-requirement" className={labelClass}>
-          Product / Requirement <span aria-hidden="true" className="text-[var(--color-secondary)]">*</span>
+          {t("Product / Requirement")} <span aria-hidden="true" className="text-[var(--color-secondary)]">*</span>
         </label>
         <input
           id="quote-requirement"
@@ -222,57 +223,38 @@ const QuoteForm = ({ onSuccess }) => {
           required
           value={form.requirement}
           onChange={handleChange}
-          placeholder="e.g. Aluminium handles, glass hinges, spare parts"
+          placeholder={t("e.g. Aluminium handles, glass hinges, spare parts")}
           className={inputClass}
         />
       </div>
 
       {/* Row 5 — Project / Application */}
       <div>
-        <label htmlFor="quote-project" className={labelClass}>Project / Application</label>
+        <label htmlFor="quote-project" className={labelClass}>{t("Project / Application")}</label>
         <input
           id="quote-project"
           name="project"
           type="text"
           value={form.project}
           onChange={handleChange}
-          placeholder="e.g. Commercial tower, factory fit-out, government project"
+          placeholder={t("e.g. Commercial tower, factory fit-out, government project")}
           className={inputClass}
         />
       </div>
 
       {/* Row 6 — Additional Details */}
       <div>
-        <label htmlFor="quote-details" className={labelClass}>Additional Details</label>
+        <label htmlFor="quote-details" className={labelClass}>{t("Additional Details")}</label>
         <textarea
           id="quote-details"
           name="details"
           rows={4}
           value={form.details}
           onChange={handleChange}
-          placeholder="Any further specifications, standards, or context about your requirement."
+          placeholder={t("Any further specifications, standards, or context about your requirement.")}
           className={`${inputClass} resize-none`}
         />
       </div>
-
-      {/* Row 7 — File Upload
-      <div>
-        <label htmlFor="quote-file" className={labelClass}>
-          Attach File{' '}
-          <span className="normal-case font-normal tracking-normal text-[var(--color-muted)]">
-            (optional — BOQ, spec sheet, drawings)
-          </span>
-        </label>
-        <input
-          id="quote-file"
-          name="file"
-          type="file"
-          accept=".pdf,.doc,.docx,.xls,.xlsx,.png,.jpg"
-          onChange={handleChange}
-          className="block w-full text-sm text-[var(--color-muted)] file:mr-4 file:py-2 file:px-4 file:border file:border-[var(--color-border)] file:bg-transparent file:text-xs file:font-semibold file:tracking-[0.08em] file:uppercase file:text-[var(--color-text)] file:cursor-pointer hover:file:border-[var(--color-primary)] file:transition-colors"
-        />
-        <p className="text-meta mt-2">PDF, Word, Excel or image files. Max 10MB.</p>
-      </div> */}
 
       {/* Submit */}
       <div className="pt-2 border-t border-[var(--color-border)]">
@@ -285,10 +267,10 @@ const QuoteForm = ({ onSuccess }) => {
           id="quote-form-submit"
           className="w-full sm:w-auto"
         >
-          {loading ? 'Submitting…' : 'Submit Requirement'}
+          {loading ? t('Submitting…') : t('Submit Requirement')}
         </Button>
         <p className="text-meta mt-4">
-          Your enquiry is handled confidentially. We typically respond within 1–2 business days.
+          {t("Your enquiry is handled confidentially. We typically respond within 1–2 business days.")}
         </p>
       </div>
     </form>

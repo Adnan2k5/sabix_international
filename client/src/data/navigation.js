@@ -7,36 +7,35 @@
  */
 
 export const mainNav = [
-  { label: 'Products',    href: '/products',     type: 'route' },
-  { label: 'Solutions',   href: '/solutions',    type: 'route' },
-  { label: 'Partnership', href: '/#partnership', type: 'hash'  },
-  { label: 'About',       href: '/about',        type: 'route' },
-  { label: 'Contact',     href: '/contact',      type: 'route' },
+  { label: 'Solutions',    href: '/solutions',     type: 'route' },
+  { label: 'Partnerships', href: '/partnerships',  type: 'route' },
+  { label: 'About',        href: '/about',         type: 'route' },
+  { label: 'Contact',      href: '/contact',       type: 'route' },
 ];
 
 export const productDomains = [
   {
     number: '01',
-    label:  'Aluminium & Glass Accessories',
-    href:   '/aluminium-glass-accessories',
+    label: 'Aluminium & Glass Accessories',
+    href: '/aluminium-glass-accessories',
   },
   {
     number: '02',
-    label:  'Tools & Hardware',
-    href:   '/tools-hardware',
+    label: 'Tools & Hardware',
+    href: '/tools-hardware',
   },
   {
     number: '03',
-    label:  'Spare Parts',
-    href:   '/spare-parts',
+    label: 'Spare Parts',
+    href: '/spare-parts',
   },
 ];
 
 export const footerNav = {
   company: [
-    { label: 'About',       href: '/about' },
-    { label: 'Partnership', href: '/#partnership' },
-    { label: 'Contact',     href: '/contact' },
+    { label: 'About',        href: '/about' },
+    { label: 'Partnerships', href: '/partnerships' },
+    { label: 'Contact',      href: '/contact' },
   ],
   products: [
     { label: 'Aluminium & Glass Accessories', href: '/aluminium-glass-accessories' },

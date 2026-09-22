@@ -9,18 +9,148 @@
  *   'route' → NavLink with active-state orange highlight
  *   'hash'  → plain <a href> (hash-scroll, no active highlight)
  */
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, ArrowRight } from 'lucide-react';
+import { Menu, X, ArrowRight, Globe, Check } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { mainNav, productDomains } from '../data/navigation';
 import { company } from '../data/company';
 import Button from './Button';
+
+/* ── Language options ── */
+const LANGUAGES = [
+  { code: 'en', label: 'English', nativeLabel: 'English', flag: '🇬🇧', dir: 'ltr' },
+  { code: 'ar', label: 'Arabic',  nativeLabel: 'العربية', flag: '🇸🇦', dir: 'rtl' },
+];
+
+const LanguageSwitcher = ({ scrolled, mobile }) => {
+  const { i18n } = useTranslation();
+  const [open, setOpen] = useState(false);
+  const ref = useRef(null);
+
+  /* Close on outside click */
+  useEffect(() => {
+    if (!open) return;
+    const handler = (e) => {
+      if (ref.current && !ref.current.contains(e.target)) setOpen(false);
+    };
+    document.addEventListener('mousedown', handler);
+    return () => document.removeEventListener('mousedown', handler);
+  }, [open]);
+
+  const currentLang = LANGUAGES.find((l) => l.code === i18n.language) ?? LANGUAGES[0];
+
+  const handleSelect = (code) => {
+    i18n.changeLanguage(code);
+    /* dir is set on <html> — update immediately */
+    document.documentElement.dir = LANGUAGES.find((l) => l.code === code)?.dir ?? 'ltr';
+    document.documentElement.lang = code;
+    setOpen(false);
+  };
+
+  /* Ensure <html> dir is correct on first render */
+  useEffect(() => {
+    document.documentElement.dir = currentLang.dir;
+    document.documentElement.lang = currentLang.code;
+  }, [currentLang]);
+
+  /* Colour tokens that work in both desktop/mobile context */
+  const triggerColor = mobile
+    ? { color: 'rgba(255,255,255,0.75)' }
+    : scrolled
+      ? { color: 'var(--color-muted)' }
+      : { color: 'rgba(255,255,255,0.65)' };
+
+  const triggerHoverClass = mobile
+    ? 'hover:text-white'
+    : scrolled
+      ? 'hover:text-[var(--color-text)]'
+      : 'hover:text-white';
+
+  return (
+    <div ref={ref} className="relative">
+      {/* Trigger button */}
+      <button
+        onClick={() => setOpen((v) => !v)}
+        className={`flex items-center gap-1.5 text-[0.7rem] font-semibold tracking-[0.1em] uppercase transition-colors select-none ${triggerHoverClass}`}
+        style={triggerColor}
+        aria-label="Select language"
+        aria-haspopup="listbox"
+        aria-expanded={open}
+      >
+        <Globe size={13} strokeWidth={1.75} />
+        <span>{currentLang.flag}</span>
+        <span>{currentLang.code.toUpperCase()}</span>
+        <svg
+          width="10"
+          height="10"
+          viewBox="0 0 10 10"
+          fill="none"
+          aria-hidden="true"
+          className={`transition-transform duration-200 ${open ? 'rotate-180' : ''}`}
+        >
+          <path d="M2 3.5l3 3 3-3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </button>
+
+      {/* Dropdown */}
+      <AnimatePresence>
+        {open && (
+          <motion.ul
+            role="listbox"
+            aria-label="Language selector"
+            initial={{ opacity: 0, y: 6, scale: 0.97 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 4, scale: 0.97 }}
+            transition={{ duration: 0.15, ease: 'easeOut' }}
+            className="absolute top-full mt-2 right-0 z-50 min-w-[9rem] overflow-hidden shadow-xl"
+            style={{
+              backgroundColor: 'var(--color-primary)',
+              border: '1px solid rgba(255,255,255,0.1)',
+            }}
+          >
+            {LANGUAGES.map((lang) => {
+              const isActive = lang.code === currentLang.code;
+              return (
+                <li key={lang.code}>
+                  <button
+                    role="option"
+                    aria-selected={isActive}
+                    onClick={() => handleSelect(lang.code)}
+                    className="w-full flex items-center justify-between gap-3 px-4 py-3 text-left text-[0.75rem] font-medium tracking-wide transition-colors"
+                    style={{
+                      color: isActive ? 'var(--color-secondary)' : 'rgba(255,255,255,0.7)',
+                      backgroundColor: isActive ? 'rgba(255,255,255,0.05)' : 'transparent',
+                    }}
+                    onMouseEnter={(e) => {
+                      if (!isActive) e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.06)';
+                    }}
+                    onMouseLeave={(e) => {
+                      if (!isActive) e.currentTarget.style.backgroundColor = 'transparent';
+                    }}
+                  >
+                    <span className="flex items-center gap-2">
+                      <span>{lang.flag}</span>
+                      <span>{lang.nativeLabel}</span>
+                    </span>
+                    {isActive && <Check size={12} strokeWidth={2.5} style={{ color: 'var(--color-secondary)' }} />}
+                  </button>
+                </li>
+              );
+            })}
+          </motion.ul>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+};
 
 const Header = () => {
   const [scrolled, setScrolled]   = useState(false);
   const [menuOpen, setMenuOpen]   = useState(false);
   const location = useLocation();
+  const { t } = useTranslation();
 
   /* Close mobile menu on route change */
   useEffect(() => {
@@ -42,8 +172,6 @@ const Header = () => {
   }, [menuOpen]);
 
   /* ── Nav text colors ── */
-  // When over dark hero (not scrolled): white text
-  // When scrolled (solid header): muted → primary on hover
   const routeLinkClass = ({ isActive }) => {
     if (scrolled) {
       return `text-[0.75rem] font-semibold tracking-[0.1em] uppercase transition-colors duration-200 ${
@@ -63,36 +191,6 @@ const Header = () => {
     ? 'text-[0.75rem] font-semibold tracking-[0.1em] uppercase transition-colors duration-200 text-[var(--color-muted)] hover:text-[var(--color-text)]'
     : 'text-[0.75rem] font-semibold tracking-[0.1em] uppercase transition-colors duration-200 text-white/70 hover:text-white';
 
-  /* ── Wordmark ── */
-  const Wordmark = ({ forceDark = false }) => {
-    const isDark = scrolled && !forceDark ? false : !scrolled && !forceDark ? true : false;
-    // Simpler: use forceDark for mobile menu (always light on dark overlay)
-    const useDark = forceDark;
-    // When not scrolled → show white. When scrolled → show primary (dark).
-    const nameColor  = (!scrolled || useDark) ? '#ffffff'                  : 'var(--color-primary)';
-    const subColor   = (!scrolled || useDark) ? 'rgba(255,255,255,0.45)'   : 'var(--color-muted)';
-
-    return (
-      <Link
-        to="/"
-        aria-label="SABIX International — home"
-        className="flex flex-col leading-none select-none"
-      >
-        <span
-          className="text-[1.1rem] font-bold tracking-[0.12em] uppercase transition-colors duration-300"
-          style={{ color: nameColor }}
-        >
-          {company.shortName}
-        </span>
-        <span
-          className="text-[0.55rem] font-medium tracking-[0.18em] uppercase mt-0.5 transition-colors duration-300"
-          style={{ color: subColor }}
-        >
-          International
-        </span>
-      </Link>
-    );
-  };
 
   /* ── Hamburger icon color ── */
   const burgerColor = scrolled ? 'var(--color-primary)' : '#ffffff';
@@ -111,7 +209,24 @@ const Header = () => {
       >
         <div className="container flex items-center justify-between h-16 md:h-[4.5rem]">
           {/* Wordmark */}
-          <Wordmark />
+          <Link
+            to="/"
+            aria-label="SABIX International — home"
+            className="flex flex-col leading-none select-none"
+          >
+            <span
+              className="text-[1.1rem] font-bold tracking-[0.12em] uppercase transition-colors duration-300"
+              style={{ color: scrolled ? 'var(--color-primary)' : '#ffffff' }}
+            >
+              {t(company.shortName)}
+            </span>
+            <span
+              className="text-[0.55rem] font-medium tracking-[0.18em] uppercase mt-0.5 transition-colors duration-300"
+              style={{ color: scrolled ? 'var(--color-muted)' : 'rgba(255,255,255,0.45)' }}
+            >
+              {t('International')}
+            </span>
+          </Link>
 
           {/* Desktop Navigation */}
           <nav aria-label="Primary navigation" className="hidden lg:flex items-center gap-8">
@@ -123,7 +238,7 @@ const Header = () => {
                   className={routeLinkClass}
                   end={item.href === '/'}
                 >
-                  {item.label}
+                  {t(item.label)}
                 </NavLink>
               ) : (
                 <a
@@ -131,7 +246,7 @@ const Header = () => {
                   href={item.href}
                   className={hashLinkClass}
                 >
-                  {item.label}
+                  {t(item.label)}
                 </a>
               )
             )}
@@ -139,6 +254,9 @@ const Header = () => {
 
           {/* Desktop CTA + Mobile trigger */}
           <div className="flex items-center gap-4">
+            <div className="hidden lg:block mr-2 border-r border-gray-400/30 pr-4">
+               <LanguageSwitcher scrolled={scrolled} mobile={false} />
+            </div>
             <Button
               to="/contact"
               variant="secondary"
@@ -147,7 +265,7 @@ const Header = () => {
               id="header-quote-cta"
               className="hidden md:inline-flex"
             >
-              Request a Quote
+              {t("Request a Quote")}
             </Button>
 
             {/* Hamburger */}
@@ -163,7 +281,7 @@ const Header = () => {
                 className="text-[0.6rem] font-semibold tracking-[0.15em] uppercase"
                 style={{ color: scrolled ? 'var(--color-muted)' : 'rgba(255,255,255,0.55)' }}
               >
-                Menu
+                {t("Menu")}
               </span>
               {menuOpen
                 ? <X size={20} strokeWidth={1.5} />
@@ -197,10 +315,10 @@ const Header = () => {
                 onClick={() => setMenuOpen(false)}
               >
                 <span className="text-[1.1rem] font-bold tracking-[0.12em] uppercase text-white">
-                  {company.shortName}
+                  {t(company.shortName)}
                 </span>
                 <span className="text-[0.55rem] font-medium tracking-[0.18em] uppercase mt-0.5 text-white/45">
-                  International
+                  {t('International')}
                 </span>
               </Link>
               <button
@@ -237,7 +355,7 @@ const Header = () => {
                         }`
                       }
                     >
-                      {item.label}
+                      {t(item.label)}
                     </NavLink>
                   ) : (
                     <a
@@ -245,7 +363,7 @@ const Header = () => {
                       onClick={() => setMenuOpen(false)}
                       className="block py-4 border-b border-white/10 text-2xl font-light tracking-tight text-white hover:text-[var(--color-secondary)] transition-colors"
                     >
-                      {item.label}
+                      {t(item.label)}
                     </a>
                   )}
                 </motion.div>
@@ -253,7 +371,7 @@ const Header = () => {
 
               {/* Product domains */}
               <div className="mt-10 mb-4">
-                <p className="text-eyebrow text-white/30 mb-5">Products</p>
+                <p className="text-eyebrow text-white/30 mb-5">{t('Products')}</p>
                 {productDomains.map((item, i) => (
                   <motion.div
                     key={item.label}
@@ -268,7 +386,7 @@ const Header = () => {
                     >
                       <span className="text-sm font-medium text-white/70 group-hover:text-white transition-colors">
                         <span className="text-index text-white/30 mr-3">{item.number}</span>
-                        {item.label}
+                        {t(item.label)}
                       </span>
                       <ArrowRight
                         size={14}
@@ -280,9 +398,19 @@ const Header = () => {
                 ))}
               </div>
 
+              {/* Language Switcher Mobile */}
+              <motion.div
+                className="mt-8 mb-4 border-t border-white/10 pt-8"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.35, duration: 0.4 }}
+              >
+                <LanguageSwitcher scrolled={scrolled} mobile={true} />
+              </motion.div>
+
               {/* CTA */}
               <motion.div
-                className="mt-10"
+                className="mt-4"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.4, duration: 0.4 }}
@@ -296,7 +424,7 @@ const Header = () => {
                   className="w-full justify-center sm:w-auto sm:justify-start"
                   onClick={() => setMenuOpen(false)}
                 >
-                  Request a Quote
+                  {t("Request a Quote")}
                 </Button>
               </motion.div>
             </nav>

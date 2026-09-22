@@ -5,10 +5,12 @@
  */
 import { Link } from 'react-router-dom';
 import { MapPin, Mail, Phone, ExternalLink } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { company } from '../data/company';
 import { footerNav } from '../data/navigation';
 
 const Footer = () => {
+  const { t } = useTranslation();
   const allLocations = [company.headquarters, ...company.branches];
 
   return (
@@ -25,15 +27,15 @@ const Footer = () => {
           <div className="sm:col-span-2 lg:col-span-1">
             <Link to="/" aria-label="SABIX International — home" className="flex flex-col leading-none mb-6">
               <span className="text-lg font-bold tracking-[0.12em] uppercase text-white">
-                {company.shortName}
+                {t(company.shortName)}
               </span>
               <span className="text-[0.55rem] font-medium tracking-[0.18em] uppercase mt-0.5 text-white/40">
-                International
+                {t("International")}
               </span>
             </Link>
 
             <p className="text-sm leading-relaxed text-white/50 max-w-xs">
-              {company.description}
+              {t(company.description)}
             </p>
 
             {/* Social links — only rendered if URLs are set */}
@@ -67,7 +69,7 @@ const Footer = () => {
 
           {/* Col 2 — Company */}
           <div>
-            <h3 className="text-eyebrow text-white/30 mb-6">Company</h3>
+            <h3 className="text-eyebrow text-white/30 mb-6">{t("Company")}</h3>
             <ul className="space-y-3">
               {footerNav.company.map((item) => (
                 <li key={item.label}>
@@ -75,7 +77,7 @@ const Footer = () => {
                     to={item.href}
                     className="text-sm text-white/55 hover:text-white transition-colors"
                   >
-                    {item.label}
+                    {t(item.label)}
                   </Link>
                 </li>
               ))}
@@ -84,7 +86,7 @@ const Footer = () => {
 
           {/* Col 3 — Products */}
           <div>
-            <h3 className="text-eyebrow text-white/30 mb-6">Products</h3>
+            <h3 className="text-eyebrow text-white/30 mb-6">{t("Products")}</h3>
             <ul className="space-y-3">
               {footerNav.products.map((item) => (
                 <li key={item.label}>
@@ -92,7 +94,7 @@ const Footer = () => {
                     to={item.href}
                     className="text-sm text-white/55 hover:text-white transition-colors"
                   >
-                    {item.label}
+                    {t(item.label)}
                   </Link>
                 </li>
               ))}
@@ -101,15 +103,15 @@ const Footer = () => {
 
           {/* Col 4 — Locations + Contact */}
           <div>
-            <h3 className="text-eyebrow text-white/30 mb-6">Locations</h3>
+            <h3 className="text-eyebrow text-white/30 mb-6">{t("Locations")}</h3>
             <ul className="space-y-5">
               {allLocations.map((loc, i) => (
                 <li key={i} className="flex flex-col gap-0.5">
                   <span className="text-xs font-semibold text-white/80">
-                    {loc.city || loc.country}
+                    {t(loc.city) || t(loc.country)}
                   </span>
                   <span className="text-xs text-white/35">
-                    {loc.country}{loc.label === 'Headquarters' ? ' — HQ' : ''}
+                    {t(loc.country)}{loc.label === 'Headquarters' ? ` — ${t("HQ")}` : ''}
                   </span>
 
                   {loc.phone && (
@@ -141,20 +143,20 @@ const Footer = () => {
           className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 py-6"
           style={{ borderTop: '1px solid rgba(255,255,255,0.08)' }}
         >
-          <p className="text-[11px] text-white/25">{company.legal.copyright}</p>
+          <p className="text-[11px] text-white/25">{t(company.legal.copyright)}</p>
 
           <div className="flex items-center gap-5">
             <a
               href={company.legal.privacyPolicyUrl}
               className="text-[11px] text-white/25 hover:text-white/60 transition-colors"
             >
-              Privacy Policy
+              {t("Privacy Policy")}
             </a>
             <a
               href={company.legal.termsUrl}
               className="text-[11px] text-white/25 hover:text-white/60 transition-colors"
             >
-              Terms
+              {t("Terms")}
             </a>
           </div>
         </div>

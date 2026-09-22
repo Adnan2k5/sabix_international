@@ -6,6 +6,8 @@ import Footer from './components/Footer';
 import DesignControls from './components/DesignControls';
 import PageTransition from './components/PageTransition';
 import ScrollToTop from './components/ScrollToTop';
+import { useTranslation } from 'react-i18next';
+import { useEffect } from 'react';
 
 /* ── Lazy-loaded pages (code splitting) ── */
 const Home                      = lazy(() => import('./pages/Home'));
@@ -16,6 +18,7 @@ const About                     = lazy(() => import('./pages/About'));
 const Contact                   = lazy(() => import('./pages/Contact'));
 const Products                  = lazy(() => import('./pages/Products'));
 const Solutions                 = lazy(() => import('./pages/Solutions'));
+const Partnerships              = lazy(() => import('./pages/Partnerships'));
 
 /* ── Page loading fallback ── */
 const PageLoader = () => (
@@ -53,27 +56,37 @@ const AnimatedRoutes = () => {
         <Route path="/spare-parts"                 element={<Page Component={SpareParts} />} />
 
         {/* Nav pages */}
-        <Route path="/about"     element={<Page Component={About} />} />
-        <Route path="/contact"   element={<Page Component={Contact} />} />
-        <Route path="/products"  element={<Page Component={Products} />} />
-        <Route path="/solutions" element={<Page Component={Solutions} />} />
+        <Route path="/about"        element={<Page Component={About} />} />
+        <Route path="/contact"      element={<Page Component={Contact} />} />
+        <Route path="/products"     element={<Page Component={Products} />} />
+        <Route path="/solutions"    element={<Page Component={Solutions} />} />
+        <Route path="/partnerships" element={<Page Component={Partnerships} />} />
       </Routes>
     </AnimatePresence>
   );
 };
 
 /* ── App root ── */
-const App = () => (
-  <BrowserRouter>
-    {/* ScrollToTop must be inside BrowserRouter so it can use useLocation */}
-    <ScrollToTop />
-    <Header />
-    <main id="main-content" tabIndex={-1}>
-      <AnimatedRoutes />
-    </main>
-    <Footer />
-    <DesignControls />
-  </BrowserRouter>
-);
+const App = () => {
+  const { i18n } = useTranslation();
+
+  useEffect(() => {
+    document.documentElement.dir = i18n.language === 'ar' ? 'rtl' : 'ltr';
+    document.documentElement.lang = i18n.language;
+  }, [i18n.language]);
+
+  return (
+    <BrowserRouter>
+      {/* ScrollToTop must be inside BrowserRouter so it can use useLocation */}
+      <ScrollToTop />
+      <Header />
+      <main id="main-content" tabIndex={-1}>
+        <AnimatedRoutes />
+      </main>
+      <Footer />
+      <DesignControls />
+    </BrowserRouter>
+  );
+};
 
 export default App;

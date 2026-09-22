@@ -5,6 +5,7 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { MapPin, Mail, Phone } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import SectionHeading from '../components/SectionHeading';
 import QuoteForm from '../components/QuoteForm';
 import { contact } from '../data/pages';
@@ -26,7 +27,7 @@ const FadeIn = ({ children, delay = 0, className = '' }) => {
   );
 };
 
-const LocationCard = ({ loc, isHQ }) => (
+const LocationCard = ({ loc, isHQ, t }) => (
   <div
     className="p-8 flex flex-col gap-1.5"
     style={{
@@ -38,7 +39,7 @@ const LocationCard = ({ loc, isHQ }) => (
       className="text-eyebrow mb-4 block"
       style={{ color: isHQ ? 'rgba(255,255,255,0.35)' : 'var(--color-muted)' }}
     >
-      {loc.label}
+      {t(loc.label)}
     </span>
     <h3
       className="font-light mb-0.5"
@@ -48,10 +49,10 @@ const LocationCard = ({ loc, isHQ }) => (
         letterSpacing: '-0.02em',
       }}
     >
-      {loc.city || loc.country}
+      {t(loc.city) || t(loc.country)}
     </h3>
     <p className="text-sm mb-4" style={{ color: isHQ ? 'rgba(255,255,255,0.45)' : 'var(--color-muted)' }}>
-      {loc.country}
+      {t(loc.country)}
     </p>
 
     <div className="flex flex-col gap-2 mt-2">
@@ -77,14 +78,16 @@ const LocationCard = ({ loc, isHQ }) => (
       {/* Placeholder message when contact details not yet set */}
       {!loc.address && !loc.phone && !loc.email && (
         <p className="text-xs italic" style={{ color: isHQ ? 'rgba(255,255,255,0.25)' : 'var(--color-muted)' }}>
-          Contact details to be provided — update <code className="text-[10px]">company.js</code>
+          {t("Contact details to be provided — update")} <code className="text-[10px]">company.js</code>
         </p>
       )}
     </div>
   </div>
 );
 
-const Contact = () => (
+const Contact = () => {
+  const { t } = useTranslation();
+  return (
   <>
     {/* ── Hero ── */}
     <section
@@ -98,7 +101,7 @@ const Contact = () => (
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          {contact.hero.eyebrow}
+          {t(contact.hero.eyebrow)}
         </motion.p>
         <motion.h1
           className="text-headline text-white mb-5"
@@ -107,7 +110,7 @@ const Contact = () => (
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.65, delay: 0.1 }}
         >
-          {contact.hero.headline}
+          {t(contact.hero.headline)}
         </motion.h1>
         <motion.p
           className="text-body-lg"
@@ -116,8 +119,74 @@ const Contact = () => (
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          {contact.hero.body}
+          {t(contact.hero.body)}
         </motion.p>
+      </div>
+    </section>
+
+    {/* ── Sales Team Contact Info ── */}
+    <section className="section-border-top" style={{ backgroundColor: 'var(--color-background)' }}>
+      <div className="container section-padding">
+        <FadeIn className="mb-12">
+          <SectionHeading eyebrow={t("Sales Team")} title={t("Contact our sales team.")} />
+        </FadeIn>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-2xl">
+          {/* Email card */}
+          <FadeIn delay={0.05}>
+            <a
+              href={`mailto:${company.sales.email}`}
+              className="flex items-start gap-5 p-8 group transition-all duration-200"
+              style={{
+                backgroundColor: 'var(--color-surface)',
+                border: '1px solid var(--color-border)',
+              }}
+            >
+              <div
+                className="flex-shrink-0 w-10 h-10 flex items-center justify-center"
+                style={{ backgroundColor: 'var(--color-primary)' }}
+              >
+                <Mail size={16} strokeWidth={1.5} style={{ color: 'var(--color-secondary)' }} />
+              </div>
+              <div>
+                <p className="text-eyebrow mb-1" style={{ color: 'var(--color-muted)' }}>{t("Email")}</p>
+                <p
+                  className="text-sm font-medium group-hover:underline"
+                  style={{ color: 'var(--color-text)' }}
+                >
+                  {company.sales.email}
+                </p>
+              </div>
+            </a>
+          </FadeIn>
+
+          {/* Phone card */}
+          <FadeIn delay={0.1}>
+            <a
+              href={`tel:${company.sales.phone}`}
+              className="flex items-start gap-5 p-8 group transition-all duration-200"
+              style={{
+                backgroundColor: 'var(--color-surface)',
+                border: '1px solid var(--color-border)',
+              }}
+            >
+              <div
+                className="flex-shrink-0 w-10 h-10 flex items-center justify-center"
+                style={{ backgroundColor: 'var(--color-primary)' }}
+              >
+                <Phone size={16} strokeWidth={1.5} style={{ color: 'var(--color-secondary)' }} />
+              </div>
+              <div>
+                <p className="text-eyebrow mb-1" style={{ color: 'var(--color-muted)' }}>{t("Phone")}</p>
+                <p
+                  className="text-sm font-medium group-hover:underline"
+                  style={{ color: 'var(--color-text)' }}
+                >
+                  {company.sales.phone}
+                </p>
+              </div>
+            </a>
+          </FadeIn>
+        </div>
       </div>
     </section>
 
@@ -125,35 +194,63 @@ const Contact = () => (
     <section className="section-border-top" style={{ backgroundColor: 'var(--color-background)' }}>
       <div className="container section-padding">
         <FadeIn className="mb-12">
-          <SectionHeading eyebrow="Our Offices" title="Reach us globally." />
+          <SectionHeading eyebrow={t("Our Offices")} title={t("Reach us globally.")} />
         </FadeIn>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <LocationCard loc={company.headquarters} isHQ />
+          <LocationCard loc={company.headquarters} isHQ t={t} />
           {company.branches.map((b, i) => (
-            <LocationCard key={i} loc={b} isHQ={false} />
+            <LocationCard key={i} loc={b} isHQ={false} t={t} />
           ))}
         </div>
       </div>
     </section>
 
-    {/* ── Quote Form ── */}
+    {/* ── Quote Form with Logo Watermark ── */}
     <section id="quote" className="section-border-top" style={{ backgroundColor: 'var(--color-surface)' }}>
       <div className="container section-padding">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
           <FadeIn className="lg:col-span-4">
+            {/* Logo */}
+            <div className="mb-8">
+              <img
+                src="/assets/images/logo.jpeg"
+                alt="SABIX International"
+                className="h-12 w-auto object-contain"
+                style={{ filter: 'none' }}
+              />
+            </div>
             <SectionHeading
-              eyebrow={contact.form.eyebrow}
-              title={contact.form.headline}
-              description={contact.form.body}
+              eyebrow={t(contact.form.eyebrow)}
+              title={t(contact.form.headline)}
+              description={t(contact.form.body)}
             />
           </FadeIn>
           <FadeIn delay={0.1} className="lg:col-span-7 lg:col-start-6">
-            <QuoteForm />
+            {/* Form wrapper with logo watermark background */}
+            <div className="relative">
+              {/* Watermark */}
+              <div
+                className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden"
+                aria-hidden="true"
+              >
+                <img
+                  src="/assets/images/logo.jpeg"
+                  alt=""
+                  className="w-72 h-72 object-contain select-none"
+                  style={{ opacity: 0.04, filter: 'grayscale(100%)' }}
+                />
+              </div>
+              {/* Actual form */}
+              <div className="relative z-10">
+                <QuoteForm />
+              </div>
+            </div>
           </FadeIn>
         </div>
       </div>
     </section>
   </>
-);
+  );
+};
 
 export default Contact;

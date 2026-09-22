@@ -6,6 +6,7 @@ import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import SectionHeading from '../components/SectionHeading';
 import CTASection from '../components/CTASection';
 import { solutions } from '../data/pages';
@@ -26,7 +27,10 @@ const FadeIn = ({ children, delay = 0, className = '' }) => {
   );
 };
 
-const Solutions = () => (
+const Solutions = () => {
+  const { t } = useTranslation();
+
+  return (
   <>
     {/* ── Hero ── */}
     <section
@@ -34,13 +38,13 @@ const Solutions = () => (
     >
       <div className="container">
         <motion.p className="text-eyebrow mb-5" style={{ color: 'var(--color-secondary)' }} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-          {solutions.hero.eyebrow}
+          {t(solutions.hero.eyebrow)}
         </motion.p>
         <motion.h1 className="text-headline text-white mb-5" style={{ maxWidth: '22ch' }} initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.65, delay: 0.1 }}>
-          {solutions.hero.headline}
+          {t(solutions.hero.headline)}
         </motion.h1>
         <motion.p className="text-body-lg" style={{ color: 'rgba(255,255,255,0.55)', maxWidth: '56ch' }} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }}>
-          {solutions.hero.body}
+          {t(solutions.hero.body)}
         </motion.p>
       </div>
     </section>
@@ -50,9 +54,9 @@ const Solutions = () => (
       <div className="container section-padding">
         <FadeIn className="mb-16">
           <SectionHeading
-            eyebrow="Supply Solutions"
-            title="What we solve."
-            description="SABIX provides supply solutions across three primary customer contexts — project supply, operational supply, and government and large-scale procurement."
+            eyebrow={t('Supply Solutions')}
+            title={t('What we solve.')}
+            description={t('SABIX provides supply solutions across three primary customer contexts — project supply, operational supply, and government and large-scale procurement.')}
           />
         </FadeIn>
 
@@ -64,10 +68,10 @@ const Solutions = () => (
                 <div className="lg:col-span-3 lg:py-12 flex flex-col gap-2 mb-6 lg:mb-0">
                   <span className="text-index text-[var(--color-secondary)]">{sol.number}</span>
                   <h2 className="text-title" style={{ fontSize: 'clamp(1.25rem, 2vw, 1.75rem)', fontWeight: 600 }}>
-                    {sol.title}
+                    {t(sol.title)}
                   </h2>
                   <p className="text-eyebrow text-[var(--color-muted)] mt-2" style={{ letterSpacing: '0.06em' }}>
-                    {sol.target}
+                    {t(sol.target)}
                   </p>
                 </div>
 
@@ -77,10 +81,10 @@ const Solutions = () => (
                 {/* Content — right */}
                 <div className="lg:col-span-8 lg:py-12 flex flex-col gap-5">
                   <h3 className="text-subheading font-semibold" style={{ fontSize: 'clamp(1rem, 1.5vw, 1.25rem)' }}>
-                    {sol.headline}
+                    {t(sol.headline)}
                   </h3>
                   <p className="text-body text-[var(--color-muted)] leading-relaxed" style={{ maxWidth: '58ch' }}>
-                    {sol.body}
+                    {t(sol.body)}
                   </p>
                   <ul className="flex flex-col gap-2 mt-2">
                     {sol.highlights.map((h, j) => (
@@ -90,7 +94,7 @@ const Solutions = () => (
                           style={{ backgroundColor: 'var(--color-secondary)' }}
                           aria-hidden="true"
                         />
-                        <span className="text-sm text-[var(--color-text)]">{h}</span>
+                        <span className="text-sm text-[var(--color-text)]">{t(h)}</span>
                       </li>
                     ))}
                   </ul>
@@ -107,9 +111,9 @@ const Solutions = () => (
       <div className="container section-padding">
         <FadeIn className="mb-14">
           <SectionHeading
-            eyebrow={solutions.process.eyebrow}
-            title={solutions.process.headline}
-            description="A straightforward process designed around your requirement — from initial enquiry to delivery."
+            eyebrow={t(solutions.process.eyebrow)}
+            title={t(solutions.process.headline)}
+            description={t('A straightforward process designed around your requirement — from initial enquiry to delivery.')}
           />
         </FadeIn>
 
@@ -118,8 +122,8 @@ const Solutions = () => (
             <FadeIn key={step.number} delay={i * 0.07}>
               <div className="p-10 flex flex-col gap-3" style={{ backgroundColor: 'var(--color-background)', minHeight: 220 }}>
                 <span className="text-index text-[var(--color-secondary)]">{step.number}</span>
-                <h3 className="text-subheading font-semibold text-base">{step.title}</h3>
-                <p className="text-sm text-[var(--color-muted)] leading-relaxed">{step.body}</p>
+                <h3 className="text-subheading font-semibold text-base">{t(step.title)}</h3>
+                <p className="text-sm text-[var(--color-muted)] leading-relaxed">{t(step.body)}</p>
               </div>
             </FadeIn>
           ))}
@@ -130,7 +134,7 @@ const Solutions = () => (
             to="/contact"
             className="inline-flex items-center gap-2 group text-[0.8rem] font-semibold tracking-[0.06em] uppercase text-[var(--color-text)] hover:text-[var(--color-secondary)] transition-colors"
           >
-            <span>Submit a requirement</span>
+            <span>{t('Submit a requirement')}</span>
             <ArrowRight size={13} strokeWidth={2} className="transition-transform group-hover:translate-x-1" />
           </Link>
         </FadeIn>
@@ -143,9 +147,9 @@ const Solutions = () => (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <FadeIn>
             <SectionHeading
-              eyebrow="Product Range"
-              title="Three product domains. One supply partner."
-              description="SABIX covers aluminium and glass accessories, tools and hardware, and spare parts — all sourced and supplied through one coordinated supply relationship."
+              eyebrow={t('Product Range')}
+              title={t('Three product domains. One supply partner.')}
+              description={t('SABIX covers aluminium and glass accessories, tools and hardware, and spare parts — all sourced and supplied through one coordinated supply relationship.')}
             />
           </FadeIn>
           <FadeIn delay={0.1} className="flex flex-col gap-4">
@@ -160,7 +164,7 @@ const Solutions = () => (
                 className="flex items-center justify-between px-6 py-5 border border-[var(--color-border)] group hover:border-[var(--color-primary)] transition-colors"
               >
                 <span className="text-sm font-semibold text-[var(--color-text)] group-hover:text-[var(--color-secondary)] transition-colors">
-                  {item.label}
+                  {t(item.label)}
                 </span>
                 <ArrowRight
                   size={14}
@@ -177,15 +181,16 @@ const Solutions = () => (
     {/* ── CTA ── */}
     <CTASection
       id="solutions-page-cta"
-      eyebrow="Work with SABIX"
-      headline={solutions.cta.headline}
-      body={solutions.cta.body}
-      primaryLabel="Request a Quote"
+      eyebrow={t('Work with SABIX')}
+      headline={t(solutions.cta.headline)}
+      body={t(solutions.cta.body)}
+      primaryLabel={t('Request a Quote')}
       primaryTo="/contact"
-      secondaryLabel="View products"
+      secondaryLabel={t('Products')}
       secondaryTo="/products"
     />
   </>
-);
+  );
+};
 
 export default Solutions;

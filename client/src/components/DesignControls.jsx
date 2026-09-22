@@ -8,7 +8,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { Copy, Check, RotateCcw, Palette, X } from 'lucide-react';
 
-const ENABLE_DESIGN_CONTROLS = true;
+const ENABLE_DESIGN_CONTROLS = false;
 
 const DEFAULT_COLORS = {
   primary:   '#242424',
