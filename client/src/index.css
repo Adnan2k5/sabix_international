@@ -18,7 +18,7 @@
    ------------------------------------------------------------ */
 :root {
   /* Brand Colors */
-  --color-primary: #242424;
+  --color-primary: #070727;
   --color-secondary: #E87524;
   --color-background: #F5F5F2;
   --color-surface: #FFFFFF;
@@ -27,7 +27,7 @@
   --color-border: #D9D9D5;
 
   /* Derived */
-  --color-primary-hover: #363636;
+  --color-primary-hover: #0e0e3a;
   --color-secondary-hover: #d4681a;
   --color-overlay: rgba(28, 28, 28, 0.55);
 
