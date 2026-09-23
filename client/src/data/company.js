@@ -77,8 +77,8 @@ export const company = {
     description:
       'SABIX International is partnered with LAVAAL International, strengthening its ability to provide trusted aluminium accessory solutions to projects and businesses.',
     logoPlaceholder: true,             // Set to false and provide logoSrc when official asset is ready
-    logoSrc: null,                     // [REPLACE] e.g. '/assets/lavaal-logo.svg'
-    website: null,                     // [REPLACE] LAVAAL website URL if applicable
+    logoSrc: "/assets/images/lavaal-partnership.jpg",                     // [REPLACE] e.g. '/assets/lavaal-logo.svg'
+    website: "https://www.lavaal.com/",                     // [REPLACE] LAVAAL website URL if applicable
   },
 };
 
