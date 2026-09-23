@@ -9,6 +9,7 @@
 export const mainNav = [
   { label: 'Solutions',    href: '/solutions',     type: 'route' },
   { label: 'Partnerships', href: '/partnerships',  type: 'route' },
+  { label: 'Home',         href: '/',              type: 'route' },
   { label: 'About',        href: '/about',         type: 'route' },
   { label: 'Contact',      href: '/contact',       type: 'route' },
 ];

@@ -207,7 +207,7 @@ const Header = () => {
           borderBottom:     scrolled ? '1px solid var(--color-border)' : '1px solid transparent',
         }}
       >
-        <div className="container flex items-center justify-between h-16 md:h-[4.5rem]">
+        <div className="container relative flex items-center justify-between h-16 md:h-[4.5rem]">
           {/* Wordmark */}
           <Link
             to="/"
@@ -228,8 +228,8 @@ const Header = () => {
             </span>
           </Link>
 
-          {/* Desktop Navigation */}
-          <nav aria-label="Primary navigation" className="hidden lg:flex items-center gap-8">
+          {/* Desktop Navigation — absolutely centered */}
+          <nav aria-label="Primary navigation" className="hidden lg:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
             {mainNav.map((item) =>
               item.type === 'route' ? (
                 <NavLink

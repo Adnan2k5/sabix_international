@@ -30,10 +30,10 @@ const FadeIn = ({ children, delay = 0, className = '' }) => {
 const category = getCategoryBySlug('spare-parts');
 
 const operationalItemKeys = [
-  'Aluminium system replacement parts',
-  'Glass hardware spare components',
-  'Factory and industrial spare parts',
-  'Project-specific sourcing',
+  'Volvo truck & trailer spare parts',
+  'Mercedes-Benz truck spare components',
+  'Engine, drivetrain & brake parts',
+  'Trailer & fleet-specific sourcing',
 ];
 
 const SpareParts = () => {
@@ -81,9 +81,9 @@ const SpareParts = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <FadeIn>
             <SectionHeading
-              eyebrow={t('Operational Continuity')}
-              title={t('The right part. When your operation needs it.')}
-              description={t('A missing spare part can halt operations, delay projects, and generate significant costs. SABIX sources replacement components and spare parts to help keep your operations running.')}
+              eyebrow={t('Fleet Continuity')}
+              title={t('The right part. When your fleet needs it.')}
+              description={t('A missing spare part can ground your trucks and halt deliveries. SABIX sources genuine and aftermarket spare parts for Volvo and Mercedes-Benz trucks and trailers to keep your fleet on the road.')}
               className="mb-10"
             />
             <div className="flex flex-col gap-4">
@@ -113,8 +113,8 @@ const SpareParts = () => {
       <div className="container section-padding">
         <FadeIn className="mb-14">
           <SectionHeading
-            eyebrow={t('Supply Categories')}
-            title={t('Where we can source.')}
+            eyebrow={t('Parts Categories')}
+            title={t('What we supply.')}
           />
         </FadeIn>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-px" style={{ backgroundColor: 'var(--color-border)' }}>
@@ -141,10 +141,10 @@ const SpareParts = () => {
                 className="font-light text-white"
                 style={{ fontSize: 'clamp(1.25rem, 2.5vw, 1.75rem)', letterSpacing: '-0.02em' }}
               >
-                {t('Our sourcing reach extends beyond standard categories.')}
+                {t('Our sourcing reach extends across all major truck and trailer makes.')}
               </h3>
               <p className="text-sm mt-2" style={{ color: 'rgba(255,255,255,0.5)', maxWidth: '52ch' }}>
-                {t('Tell us the part you need — reference, specification, or a sample description. Our team will work to source it from trusted suppliers across international markets.')}
+                {t('Tell us the part you need — OEM part number, specification, or a description. Our team will work to source it from trusted suppliers across international markets.')}
               </p>
             </div>
             <a
@@ -172,10 +172,10 @@ const SpareParts = () => {
               {t('Tell us the part you need.')}
             </h2>
             <p className="text-body text-[var(--color-muted)] mb-8" style={{ maxWidth: '38ch' }}>
-              {t('Describe the spare part or replacement component your operation or project requires. Include the reference, specification, or a sample description — our team will work to source it.')}
+              {t('Describe the truck or trailer part your fleet requires. Include the OEM part number, make, model, and year — our team will work to source it from trusted suppliers.')}
             </p>
             <p className="text-meta">
-              {t('SABIX handles sourcing for both standard and project-specific replacement requirements.')}
+              {t('SABIX handles sourcing for both standard and fleet-specific Volvo and Mercedes-Benz replacement requirements.')}
             </p>
           </FadeIn>
           <FadeIn delay={0.1} className="lg:col-span-7 lg:col-start-6">
@@ -189,8 +189,8 @@ const SpareParts = () => {
     <CTASection
       id="spareparts-page-cta"
       eyebrow={t('Spare Parts')}
-      headline={t('Need a part sourced?')}
-      body={t('Share the reference or description. Our team will work to source and supply the replacement component your operation requires.')}
+      headline={t('Need a truck part sourced?')}
+      body={t('Share the part number, make, or description. Our team will work to source and supply the replacement component your fleet requires — Volvo, Mercedes-Benz and more.')}
       primaryLabel={t('Submit Requirement')}
       primaryHref="#enquire"
       secondaryLabel={t('Back to all categories')}

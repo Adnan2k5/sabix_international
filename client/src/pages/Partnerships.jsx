@@ -10,6 +10,7 @@ import Button from '../components/Button';
 import SectionHeading from '../components/SectionHeading';
 import CTASection from '../components/CTASection';
 import { company } from '../data/company';
+import lavaalLogo from '../assets/lavaal-logo.jpg';
 
 const FadeIn = ({ children, delay = 0, className = '' }) => {
   const ref = useRef(null);
@@ -88,69 +89,6 @@ const Partnerships = () => {
         </div>
       </section>
 
-      {/* ── Partnership Philosophy ── */}
-      <section className="section-border-top" style={{ backgroundColor: 'var(--color-background)' }}>
-        <div className="container section-padding">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-            <FadeIn className="lg:col-span-5">
-              <SectionHeading
-                eyebrow={t('Our Approach')}
-                title={t('Stronger together. Better for your project.')}
-                description={t('Every partnership SABIX establishes is chosen to directly benefit our clients — extending our product reach, deepening our technical expertise, and reinforcing our ability to supply the right product for every requirement.')}
-              />
-              <div className="mt-10 flex flex-col gap-3">
-                {partnershipBenefitKeys.map((key, i) => (
-                  <div key={i} className="flex items-start gap-3">
-                    <CheckCircle
-                      size={16}
-                      strokeWidth={1.5}
-                      className="flex-shrink-0 mt-0.5"
-                      style={{ color: 'var(--color-secondary)' }}
-                    />
-                    <span className="text-sm text-[var(--color-muted)]">{t(key)}</span>
-                  </div>
-                ))}
-              </div>
-            </FadeIn>
-
-            <FadeIn delay={0.1} className="lg:col-span-6 lg:col-start-7">
-              <div
-                className="p-10 lg:p-14"
-                style={{ backgroundColor: 'var(--color-surface)', border: '1px solid var(--color-border)' }}
-              >
-                <p className="text-eyebrow mb-8" style={{ color: 'var(--color-muted)' }}>
-                  {t('Partnerships at a glance')}
-                </p>
-                <div className="grid grid-cols-2 gap-px" style={{ backgroundColor: 'var(--color-border)' }}>
-                  {statsKeys.map((stat, i) => (
-                    <div
-                      key={i}
-                      className="p-6 flex flex-col gap-1"
-                      style={{ backgroundColor: 'var(--color-background)' }}
-                    >
-                      <p
-                        className="font-light"
-                        style={{
-                          fontSize: 'clamp(1.5rem, 3vw, 2.25rem)',
-                          letterSpacing: '-0.03em',
-                          color: 'var(--color-text)',
-                          lineHeight: 1,
-                        }}
-                      >
-                        {t(stat.valueKey)}
-                      </p>
-                      <p className="text-eyebrow" style={{ color: 'var(--color-muted)' }}>
-                        {t(stat.labelKey)}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </FadeIn>
-          </div>
-        </div>
-      </section>
-
       {/* ── LAVAAL Partner Card ── */}
       <section className="section-border-top" style={{ backgroundColor: 'var(--color-surface)' }}>
         <div className="container section-padding">
@@ -175,20 +113,14 @@ const Partnerships = () => {
                 {/* Logo area */}
                 <div>
                   <div
-                    className="inline-flex items-center justify-center px-8 py-5 mb-8"
-                    style={{ border: '1px solid rgba(255,255,255,0.12)' }}
+                    className="inline-flex items-center justify-center px-6 py-4 mb-8"
+                    style={{ border: '1px solid rgba(255,255,255,0.12)', backgroundColor: 'rgba(255,255,255,0.04)' }}
                   >
-                    {/* LAVAAL Logo placeholder — replace with actual logo image when available */}
-                    <span
-                      className="font-bold uppercase tracking-[0.22em]"
-                      style={{
-                        fontSize: 'clamp(1.2rem, 2vw, 1.6rem)',
-                        color: '#ffffff',
-                        letterSpacing: '0.22em',
-                      }}
-                    >
-                      LAVAAL
-                    </span>
+                    <img
+                      src={lavaalLogo}
+                      alt="LAVAAL International"
+                      style={{ height: '56px', width: 'auto', objectFit: 'contain' }}
+                    />
                   </div>
                   <p
                     className="text-eyebrow mb-2"
@@ -263,14 +195,6 @@ const Partnerships = () => {
                   >
                     {t('Explore Aluminium Products')}
                   </Button>
-                  <Button
-                    to="/contact"
-                    variant="ghost"
-                    size="md"
-                    id="partnerships-lavaal-contact-cta"
-                  >
-                    {t('Get in touch')}
-                  </Button>
                 </div>
               </div>
             </div>
@@ -291,6 +215,69 @@ const Partnerships = () => {
               </p>
             </div>
           </FadeIn>
+        </div>
+      </section>
+
+      {/* ── Partnership Philosophy ── */}
+      <section className="section-border-top" style={{ backgroundColor: 'var(--color-background)' }}>
+        <div className="container section-padding">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+            <FadeIn className="lg:col-span-5">
+              <SectionHeading
+                eyebrow={t('Our Approach')}
+                title={t('Stronger together. Better for your project.')}
+                description={t('Every partnership SABIX establishes is chosen to directly benefit our clients — extending our product reach, deepening our technical expertise, and reinforcing our ability to supply the right product for every requirement.')}
+              />
+              <div className="mt-10 flex flex-col gap-3">
+                {partnershipBenefitKeys.map((key, i) => (
+                  <div key={i} className="flex items-start gap-3">
+                    <CheckCircle
+                      size={16}
+                      strokeWidth={1.5}
+                      className="flex-shrink-0 mt-0.5"
+                      style={{ color: 'var(--color-secondary)' }}
+                    />
+                    <span className="text-sm text-[var(--color-muted)]">{t(key)}</span>
+                  </div>
+                ))}
+              </div>
+            </FadeIn>
+
+            <FadeIn delay={0.1} className="lg:col-span-6 lg:col-start-7">
+              <div
+                className="p-10 lg:p-14"
+                style={{ backgroundColor: 'var(--color-surface)', border: '1px solid var(--color-border)' }}
+              >
+                <p className="text-eyebrow mb-8" style={{ color: 'var(--color-muted)' }}>
+                  {t('Partnerships at a glance')}
+                </p>
+                <div className="grid grid-cols-2 gap-px" style={{ backgroundColor: 'var(--color-border)' }}>
+                  {statsKeys.map((stat, i) => (
+                    <div
+                      key={i}
+                      className="p-6 flex flex-col gap-1"
+                      style={{ backgroundColor: 'var(--color-background)' }}
+                    >
+                      <p
+                        className="font-light"
+                        style={{
+                          fontSize: 'clamp(1.5rem, 3vw, 2.25rem)',
+                          letterSpacing: '-0.03em',
+                          color: 'var(--color-text)',
+                          lineHeight: 1,
+                        }}
+                      >
+                        {t(stat.valueKey)}
+                      </p>
+                      <p className="text-eyebrow" style={{ color: 'var(--color-muted)' }}>
+                        {t(stat.labelKey)}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </FadeIn>
+          </div>
         </div>
       </section>
 
