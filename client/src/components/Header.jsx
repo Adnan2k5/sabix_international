@@ -17,6 +17,7 @@ import { useTranslation } from 'react-i18next';
 import { mainNav, productDomains } from '../data/navigation';
 import { company } from '../data/company';
 import Button from './Button';
+import sabixLogo from '../assets/images/full logo.png';
 
 /* ── Language options ── */
 const LANGUAGES = [
@@ -212,20 +213,13 @@ const Header = () => {
           <Link
             to="/"
             aria-label="SABIX International — home"
-            className="flex flex-col leading-none select-none"
+            className="flex items-center select-none"
           >
-            <span
-              className="text-[1.1rem] font-bold tracking-[0.12em] uppercase transition-colors duration-300"
-              style={{ color: scrolled ? 'var(--color-primary)' : '#ffffff' }}
-            >
-              {t(company.shortName)}
-            </span>
-            <span
-              className="text-[0.55rem] font-medium tracking-[0.18em] uppercase mt-0.5 transition-colors duration-300"
-              style={{ color: scrolled ? 'var(--color-muted)' : 'rgba(255,255,255,0.45)' }}
-            >
-              {t('International')}
-            </span>
+            <img
+              src={sabixLogo}
+              alt="SABIX International"
+              className="h-10 w-auto object-contain"
+            />
           </Link>
 
           {/* Desktop Navigation — absolutely centered */}
@@ -311,15 +305,14 @@ const Header = () => {
               <Link
                 to="/"
                 aria-label="SABIX International — home"
-                className="flex flex-col leading-none select-none"
+                className="flex items-center select-none"
                 onClick={() => setMenuOpen(false)}
               >
-                <span className="text-[1.1rem] font-bold tracking-[0.12em] uppercase text-white">
-                  {t(company.shortName)}
-                </span>
-                <span className="text-[0.55rem] font-medium tracking-[0.18em] uppercase mt-0.5 text-white/45">
-                  {t('International')}
-                </span>
+                <img
+                  src={sabixLogo}
+                  alt="SABIX International"
+                  className="h-10 w-auto object-contain"
+                />
               </Link>
               <button
                 onClick={() => setMenuOpen(false)}
