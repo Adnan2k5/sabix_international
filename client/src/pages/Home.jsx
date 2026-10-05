@@ -267,7 +267,7 @@ const DomainsSection = () => {
           <SectionHeading
             eyebrow={t("Product Domains")}
             title={t("Areas of Expertise.")}
-            description={t("SABIX covers aluminium and glass accessories, tools and hardware, and spare parts — sourced and supplied as one coordinated requirement.")}
+            description={t("SABIX covers aluminium and glass accessories, tools and hardware, and tapes and sealants — sourced and supplied as one coordinated requirement.")}
           />
         </div>
       </FadeIn>
@@ -299,7 +299,10 @@ const DomainPanel = ({ category, reversed }) => {
       {/* Image */}
       <div className={`order-1 ${reversed ? 'lg:order-2' : 'lg:order-1'}`}>
         <ImageReveal
-          src={`/assets/images/${category.id === 'aluminium-glass-accessories' ? 'aluminium-accessories' : category.id}.jpg`}
+          src={`/assets/images/${
+            category.id === 'aluminium-glass-accessories' ? 'aluminium-accessories'
+            : category.id
+          }.jpg`}
           alt={category.imageAlt}
           aspectRatio="4/3"
           containerClassName="w-full"
@@ -397,7 +400,7 @@ const SupplySection = () => {
   const supplyItems = [
     t('Aluminium Profiles'), t('Glass Hardware'), t('Handles & Hinges'),
     t('Glass Fittings'), t('Factory Hardware'), t('Installation Tools'),
-    t('Spare Parts'), t('Project Components'),
+    t('Tapes & Sealants'), t('Project Components'),
   ];
 
   return (
@@ -425,8 +428,8 @@ const SupplySection = () => {
               containerClassName="w-full -mt-6"
             />
             <ImageReveal
-              src="/assets/images/spare-parts.jpg"
-              alt="Mechanical spare parts"
+              src="/assets/images/tapes-sealants.jpg"
+              alt="Industrial tapes and sealants"
               aspectRatio="1/1"
               containerClassName="w-full"
             />

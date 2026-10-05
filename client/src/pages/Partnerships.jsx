@@ -10,7 +10,7 @@ import Button from '../components/Button';
 import SectionHeading from '../components/SectionHeading';
 import CTASection from '../components/CTASection';
 import { company } from '../data/company';
-import lavaalLogo from '../assets/lavaal-logo.jpg';
+import lavaalCertificate from '../assets/images/certificate.png';
 
 const FadeIn = ({ children, delay = 0, className = '' }) => {
   const ref = useRef(null);
@@ -105,53 +105,64 @@ const Partnerships = () => {
               className="grid grid-cols-1 lg:grid-cols-12 gap-0 overflow-hidden"
               style={{ border: '1px solid var(--color-border)' }}
             >
-              {/* Left — dark brand panel */}
+              {/* Left — Certificate Display Panel */}
               <div
-                className="lg:col-span-5 flex flex-col justify-between p-10 lg:p-14 min-h-[360px]"
+                className="lg:col-span-5 flex flex-col justify-between p-8 lg:p-12 min-h-[360px]"
                 style={{ backgroundColor: 'var(--color-primary)' }}
               >
-                {/* Logo area */}
-                <div>
-                  <div
-                    className="inline-flex items-center justify-center px-6 py-4 mb-8"
-                    style={{ border: '1px solid rgba(255,255,255,0.12)', backgroundColor: 'rgba(255,255,255,0.04)' }}
-                  >
-                    <img
-                      src={lavaalLogo}
-                      alt="LAVAAL International"
-                      style={{ height: '56px', width: 'auto', objectFit: 'contain' }}
-                    />
-                  </div>
+                {/* Certificate area */}
+                <div className="flex flex-col h-full">
+                  {/* Eyebrow label */}
                   <p
-                    className="text-eyebrow mb-2"
+                    className="text-eyebrow mb-6"
                     style={{ color: 'var(--color-secondary)' }}
                   >
                     {t('Aluminium Accessories Partner')}
                   </p>
-                  <p
-                    className="font-light"
+
+                  {/* Certificate frame */}
+                  <div
+                    className="relative flex-1 flex items-center justify-center overflow-hidden"
                     style={{
-                      color: 'rgba(255,255,255,0.85)',
-                      fontSize: 'clamp(1.1rem, 2vw, 1.4rem)',
-                      lineHeight: 1.3,
-                      letterSpacing: '-0.01em',
+                      border: '1px solid rgba(255,255,255,0.14)',
+                      backgroundColor: 'rgba(255,255,255,0.03)',
+                      padding: '1.25rem',
+                      borderRadius: '2px',
                     }}
                   >
-                    {t('LAVAAL International')}
-                  </p>
-                  <p className="text-sm mt-2" style={{ color: 'rgba(255,255,255,0.45)' }}>
-                    {t(company.partnership.tagline)}
-                  </p>
-                </div>
+                    {/* Decorative corner accents */}
+                    <span style={{ position: 'absolute', top: '8px', left: '8px', width: '14px', height: '14px', borderTop: '2px solid var(--color-secondary)', borderLeft: '2px solid var(--color-secondary)' }} />
+                    <span style={{ position: 'absolute', top: '8px', right: '8px', width: '14px', height: '14px', borderTop: '2px solid var(--color-secondary)', borderRight: '2px solid var(--color-secondary)' }} />
+                    <span style={{ position: 'absolute', bottom: '8px', left: '8px', width: '14px', height: '14px', borderBottom: '2px solid var(--color-secondary)', borderLeft: '2px solid var(--color-secondary)' }} />
+                    <span style={{ position: 'absolute', bottom: '8px', right: '8px', width: '14px', height: '14px', borderBottom: '2px solid var(--color-secondary)', borderRight: '2px solid var(--color-secondary)' }} />
 
-                <div className="mt-8" style={{ borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '1.5rem' }}>
-                  <span
-                    className="inline-flex items-center gap-2 text-xs font-semibold tracking-[0.1em] uppercase"
-                    style={{ color: 'var(--color-secondary)' }}
-                  >
-                    <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-secondary)]" />
-                    {t('Active Partnership')}
-                  </span>
+                    <img
+                      src={lavaalCertificate}
+                      alt="LAVAAL International — Official Certificate of Appreciation for SABIX International Company"
+                      style={{
+                        width: '100%',
+                        maxWidth: '340px',
+                        height: 'auto',
+                        objectFit: 'contain',
+                        display: 'block',
+                        filter: 'drop-shadow(0 4px 24px rgba(0,0,0,0.5))',
+                      }}
+                    />
+                  </div>
+
+                  {/* Active badge */}
+                  <div className="mt-6" style={{ borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: '1.25rem' }}>
+                    <span
+                      className="inline-flex items-center gap-2 text-xs font-semibold tracking-[0.1em] uppercase"
+                      style={{ color: 'var(--color-secondary)' }}
+                    >
+                      <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-secondary)]" />
+                      {t('Active Partnership')}
+                    </span>
+                    <p className="text-xs mt-2" style={{ color: 'rgba(255,255,255,0.35)', letterSpacing: '0.02em' }}>
+                      {t('Official LAVAAL International Certificate · 2027')}
+                    </p>
+                  </div>
                 </div>
               </div>
 
