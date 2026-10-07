@@ -84,12 +84,12 @@ export const products = {
   meta: {
     title: 'Products — SABIX International Co. Ltd.',
     description:
-      'Explore SABIX International\'s three product domains: Aluminium & Glass Accessories, Tools & Hardware, and Spare Parts — supplied for contractors, factories and project teams.',
+      'Explore SABIX International\'s three product domains: Aluminium & Glass Accessories, Tools & Hardware, and Tapes & Sealants — supplied for contractors, factories and project teams.',
   },
   hero: {
     eyebrow: 'Products',
     headline: 'From standard hardware to project-specific requirements.',
-    body: 'SABIX supplies across three primary domains — aluminium and glass accessories, tools and hardware, and spare parts. Each category is sourced and supplied to match your project or operational requirement.',
+    body: 'SABIX supplies across three primary domains — aluminium and glass accessories, tools and hardware, and tapes and sealants. Each category is sourced and supplied to match your project or operational requirement.',
   },
   intro: {
     eyebrow: 'Supply Range',

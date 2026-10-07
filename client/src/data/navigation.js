@@ -27,8 +27,8 @@ export const productDomains = [
   },
   {
     number: '03',
-    label: 'Spare Parts',
-    href: '/spare-parts',
+    label: 'Tapes & Sealants',
+    href: '/tapes-sealants',
   },
 ];
 
@@ -41,6 +41,6 @@ export const footerNav = {
   products: [
     { label: 'Aluminium & Glass Accessories', href: '/aluminium-glass-accessories' },
     { label: 'Tools & Hardware',              href: '/tools-hardware' },
-    { label: 'Spare Parts',                   href: '/spare-parts' },
+    { label: 'Tapes & Sealants',                   href: '/tapes-sealants' },
   ],
 };

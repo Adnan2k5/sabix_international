@@ -13,7 +13,7 @@ import { useEffect } from 'react';
 const Home                      = lazy(() => import('./pages/Home'));
 const AluminiumGlassAccessories = lazy(() => import('./pages/AluminiumGlassAccessories'));
 const ToolsHardware             = lazy(() => import('./pages/ToolsHardware'));
-const SpareParts                = lazy(() => import('./pages/SpareParts'));
+const TapesSealants             = lazy(() => import('./pages/TapesSealants'));
 const About                     = lazy(() => import('./pages/About'));
 const Contact                   = lazy(() => import('./pages/Contact'));
 const Products                  = lazy(() => import('./pages/Products'));
@@ -53,7 +53,7 @@ const AnimatedRoutes = () => {
         <Route path="/"                            element={<Page Component={Home} />} />
         <Route path="/aluminium-glass-accessories" element={<Page Component={AluminiumGlassAccessories} />} />
         <Route path="/tools-hardware"              element={<Page Component={ToolsHardware} />} />
-        <Route path="/spare-parts"                 element={<Page Component={SpareParts} />} />
+        <Route path="/tapes-sealants"                 element={<Page Component={TapesSealants} />} />
 
         {/* Nav pages */}
         <Route path="/about"        element={<Page Component={About} />} />
