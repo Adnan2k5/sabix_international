@@ -223,7 +223,7 @@ const QuoteForm = ({ onSuccess }) => {
           required
           value={form.requirement}
           onChange={handleChange}
-          placeholder={t("e.g. Aluminium handles, glass hinges, spare parts")}
+          placeholder={t("e.g. Aluminium handles, glass hinges, Tape & Sealants")}
           className={inputClass}
         />
       </div>

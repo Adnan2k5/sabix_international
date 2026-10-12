@@ -21,7 +21,7 @@ export const company = {
   },
 
   description:
-    'SABIX International Co. Ltd. is an international trading and supply company specialising in aluminium, glass hardware, tools, spare parts and project-specific industrial requirements. Serving contractors, factories, government projects and industrial businesses across international markets.',
+    'SABIX International Co. Ltd. is an international trading and supply company specialising in aluminium, glass hardware, Tape & Sealants and project-specific industrial requirements. Serving contractors, factories, government projects and industrial businesses across international markets.',
 
   // ── Headquarters ────────────────────────────────────────────
   headquarters: {

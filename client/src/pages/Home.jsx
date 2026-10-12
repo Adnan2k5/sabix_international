@@ -39,121 +39,121 @@ const FadeIn = ({ children, delay = 0, className = '' }) => {
 const Hero = () => {
   const { t } = useTranslation();
   return (
-  <section
-    id="hero"
-    aria-label="Hero"
-    className="relative min-h-screen flex items-end"
-    style={{ backgroundColor: 'var(--color-primary)' }}
-  >
-    {/* KAFD Background image */}
-    <div className="absolute inset-0 overflow-hidden">
-      <img
-        src="/assets/images/hero-kafd.jpg"
-        alt=""
-        loading="eager"
-        className="w-full h-full object-cover"
-        style={{ objectPosition: 'center center', opacity: 0.55, transform: 'scaleX(-1)' }}
-      />
-      {/* Overlay: strong at bottom so hero text stays sharp */}
-      <div
-        className="absolute inset-0"
-        style={{
-          background: 'linear-gradient(to top, rgba(7,7,39,0.97) 0%, rgba(7,7,39,0.75) 35%, rgba(7,7,39,0.35) 65%, rgba(7,7,39,0.10) 100%)',
-        }}
-      />
-    </div>
-
-    {/* Content */}
-    <div className="container relative z-10 pb-20 pt-40">
-      <div className="max-w-3xl">
-        {/* Eyebrow */}
-        <motion.p
-          className="text-eyebrow mb-8"
-          style={{ color: 'var(--color-secondary)' }}
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-        >
-          {t("International Industrial Supply")}
-        </motion.p>
-
-        {/* Headline */}
-        <motion.h1
-          className="text-display text-white mb-6"
-          style={{ maxWidth: '18ch' }}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.75, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-        >
-          {t("Everything your project needs.")}{' '}
-          <span style={{ color: 'rgba(255,255,255,0.45)', fontWeight: 300 }}>
-            {t("From one source.")}
-          </span>
-        </motion.h1>
-
-        {/* Body */}
-        <motion.p
-          className="text-body-lg mb-10"
-          style={{ color: 'rgba(255,255,255,0.6)', maxWidth: '55ch' }}
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-        >
-          {t("SABIX International supplies aluminium, glass hardware, tools, spare parts and project-specific requirements to contractors, factories, government projects and businesses across international markets.")}
-        </motion.p>
-
-        {/* CTAs */}
-        <motion.div
-          className="flex flex-wrap gap-4"
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-        >
-          <Button
-            href="#products"
-            variant="secondary"
-            size="lg"
-            arrow
-            id="hero-explore-cta"
-          >
-            {t("Explore Products")}
-          </Button>
-          <Button
-            href="#quote"
-            variant="ghost-light"
-            size="lg"
-            id="hero-quote-cta"
-          >
-            {t("Request a Quote")}
-          </Button>
-        </motion.div>
-
-        {/* Location metadata */}
-        <motion.div
-          className="flex items-center gap-2 mt-16"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.7 }}
-        >
-          <span className="text-meta" style={{ color: 'rgba(255,255,255,0.25)' }}>
-            {t("Riyadh · Saudi Arabia \u00a0/\u00a0 United States \u00a0/\u00a0 India")}
-          </span>
-        </motion.div>
-      </div>
-    </div>
-
-    {/* Scroll indicator */}
-    <motion.div
-      className="absolute bottom-8 right-8 hidden md:flex flex-col items-center gap-2"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ delay: 1.2, duration: 0.5 }}
-      aria-hidden="true"
+    <section
+      id="hero"
+      aria-label="Hero"
+      className="relative min-h-screen flex items-end"
+      style={{ backgroundColor: 'var(--color-primary)' }}
     >
-      <div className="w-px h-12 bg-white/20" />
-      <span className="text-meta rotate-90 origin-center" style={{ color: 'rgba(255,255,255,0.25)' }}>{t("Scroll")}</span>
-    </motion.div>
-  </section>
+      {/* KAFD Background image */}
+      <div className="absolute inset-0 overflow-hidden">
+        <img
+          src="/assets/images/hero-kafd.jpg"
+          alt=""
+          loading="eager"
+          className="w-full h-full object-cover"
+          style={{ objectPosition: 'center center', opacity: 0.55, transform: 'scaleX(-1)' }}
+        />
+        {/* Overlay: strong at bottom so hero text stays sharp */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background: 'linear-gradient(to top, rgba(7,7,39,0.97) 0%, rgba(7,7,39,0.75) 35%, rgba(7,7,39,0.35) 65%, rgba(7,7,39,0.10) 100%)',
+          }}
+        />
+      </div>
+
+      {/* Content */}
+      <div className="container relative z-10 pb-20 pt-40">
+        <div className="max-w-3xl">
+          {/* Eyebrow */}
+          <motion.p
+            className="text-eyebrow mb-8"
+            style={{ color: 'var(--color-secondary)' }}
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+          >
+            {t("International Industrial Supply")}
+          </motion.p>
+
+          {/* Headline */}
+          <motion.h1
+            className="text-display text-white mb-6"
+            style={{ maxWidth: '18ch' }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.75, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          >
+            {t("Everything your project needs.")}{' '}
+            <span style={{ color: 'rgba(255,255,255,0.45)', fontWeight: 300 }}>
+              {t("From one source.")}
+            </span>
+          </motion.h1>
+
+          {/* Body */}
+          <motion.p
+            className="text-body-lg mb-10"
+            style={{ color: 'rgba(255,255,255,0.6)', maxWidth: '55ch' }}
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+          >
+            {t("SABIX International supplies aluminium, glass hardware, tools, Tape & Sealants and project-specific requirements to contractors, factories, government projects and businesses across international markets.")}
+          </motion.p>
+
+          {/* CTAs */}
+          <motion.div
+            className="flex flex-wrap gap-4"
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <Button
+              href="#products"
+              variant="secondary"
+              size="lg"
+              arrow
+              id="hero-explore-cta"
+            >
+              {t("Explore Products")}
+            </Button>
+            <Button
+              href="#quote"
+              variant="ghost-light"
+              size="lg"
+              id="hero-quote-cta"
+            >
+              {t("Request a Quote")}
+            </Button>
+          </motion.div>
+
+          {/* Location metadata */}
+          <motion.div
+            className="flex items-center gap-2 mt-16"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.7 }}
+          >
+            <span className="text-meta" style={{ color: 'rgba(255,255,255,0.25)' }}>
+              {t("Riyadh · Saudi Arabia \u00a0/\u00a0 United States \u00a0/\u00a0 India")}
+            </span>
+          </motion.div>
+        </div>
+      </div>
+
+      {/* Scroll indicator */}
+      <motion.div
+        className="absolute bottom-8 right-8 hidden md:flex flex-col items-center gap-2"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.2, duration: 0.5 }}
+        aria-hidden="true"
+      >
+        <div className="w-px h-12 bg-white/20" />
+        <span className="text-meta rotate-90 origin-center" style={{ color: 'rgba(255,255,255,0.25)' }}>{t("Scroll")}</span>
+      </motion.div>
+    </section>
   );
 };
 
@@ -161,9 +161,9 @@ const Hero = () => {
 const PunchlineSection = () => {
   const { t } = useTranslation();
   const stats = [
-    { icon: Award,      value: '30+',   label: t('Years of Excellence')  },
-    { icon: Globe,      value: null,    label: t('Global Market Reach')  },
-    { icon: TrendingUp, value: '1000+', label: t('Projects Supplied')   },
+    { icon: Award, value: '30+', label: t('Years of Excellence') },
+    { icon: Globe, value: null, label: t('Global Market Reach') },
+    { icon: TrendingUp, value: '1000+', label: t('Projects Supplied') },
   ];
 
   return (
@@ -182,7 +182,7 @@ const PunchlineSection = () => {
             </h2>
             <div className="flex flex-col gap-4" style={{ maxWidth: '52ch' }}>
               <p className="text-body" style={{ color: 'var(--color-muted)', lineHeight: 1.75 }}>
-                {t("For over three decades, SABIX International has been the single-source partner that projects and businesses rely on — delivering industrial supply solutions across aluminium, glass hardware, tools, and spare parts with precision and consistency.")}
+                {t("For over three decades, SABIX International has been the single-source partner that projects and businesses rely on — delivering industrial supply solutions across aluminium, glass hardware, tools, and Tape & Sealants with precision and consistency.")}
               </p>
               <p className="text-body" style={{ color: 'var(--color-muted)', lineHeight: 1.75 }}>
                 {t("Where others complicate procurement with multiple vendors, SABIX simplifies it — one trusted supplier, one coordinated requirement, zero compromise on quality.")}
@@ -207,7 +207,7 @@ const PunchlineSection = () => {
                     className="flex items-center gap-8 p-8"
                     style={{ backgroundColor: i === 0 ? 'var(--color-primary)' : 'var(--color-background)' }}
                   >
-                  <Icon
+                    <Icon
                       size={28}
                       strokeWidth={1.25}
                       style={{ color: 'var(--color-secondary)', flexShrink: 0 }}
@@ -260,26 +260,26 @@ const PunchlineSection = () => {
 const DomainsSection = () => {
   const { t } = useTranslation();
   return (
-  <section id="products" className="section-border-top" style={{ backgroundColor: 'var(--color-background)' }}>
-    <div className="container section-padding">
-      <FadeIn>
-        <div className="flex items-end justify-between mb-16 gap-6 flex-wrap">
-          <SectionHeading
-            eyebrow={t("Product Domains")}
-            title={t("Areas of Expertise.")}
-            description={t("SABIX covers aluminium and glass accessories, tools and hardware, and tapes and sealants — sourced and supplied as one coordinated requirement.")}
-          />
-        </div>
-      </FadeIn>
+    <section id="products" className="section-border-top" style={{ backgroundColor: 'var(--color-background)' }}>
+      <div className="container section-padding">
+        <FadeIn>
+          <div className="flex items-end justify-between mb-16 gap-6 flex-wrap">
+            <SectionHeading
+              eyebrow={t("Product Domains")}
+              title={t("Areas of Expertise.")}
+              description={t("SABIX covers aluminium and glass accessories, tools and hardware, and tapes and sealants — sourced and supplied as one coordinated requirement.")}
+            />
+          </div>
+        </FadeIn>
 
-      {/* Domain panels */}
-      <div className="flex flex-col divide-y divide-[var(--color-border)]">
-        {categories.map((cat, i) => (
-          <DomainPanel key={cat.id} category={cat} index={i} reversed={i === 1} />
-        ))}
+        {/* Domain panels */}
+        <div className="flex flex-col divide-y divide-[var(--color-border)]">
+          {categories.map((cat, i) => (
+            <DomainPanel key={cat.id} category={cat} index={i} reversed={i === 1} />
+          ))}
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
   );
 };
 
@@ -299,10 +299,9 @@ const DomainPanel = ({ category, reversed }) => {
       {/* Image */}
       <div className={`order-1 ${reversed ? 'lg:order-2' : 'lg:order-1'}`}>
         <ImageReveal
-          src={`/assets/images/${
-            category.id === 'aluminium-glass-accessories' ? 'aluminium-accessories'
-            : category.id
-          }.jpg`}
+          src={`/assets/images/${category.id === 'aluminium-glass-accessories' ? 'aluminium-accessories'
+              : category.id
+            }.jpg`}
           alt={category.imageAlt}
           aspectRatio="4/3"
           containerClassName="w-full"
@@ -359,38 +358,38 @@ const DomainPanel = ({ category, reversed }) => {
 const ValuesSection = () => {
   const { t } = useTranslation();
   return (
-  <section id="solutions" className="section-border-top" style={{ backgroundColor: 'var(--color-background)' }}>
-    <div className="container section-padding">
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
-        {/* Left — heading */}
-        <FadeIn className="lg:col-span-4">
-          <SectionHeading
-            eyebrow={t("Why SABIX")}
-            title={<>{t("One supplier.")}<br />{t("Multiple requirements.")}<br />{t("Less complexity.")}</>}
-          />
-        </FadeIn>
+    <section id="solutions" className="section-border-top" style={{ backgroundColor: 'var(--color-background)' }}>
+      <div className="container section-padding">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
+          {/* Left — heading */}
+          <FadeIn className="lg:col-span-4">
+            <SectionHeading
+              eyebrow={t("Why SABIX")}
+              title={<>{t("One supplier.")}<br />{t("Multiple requirements.")}<br />{t("Less complexity.")}</>}
+            />
+          </FadeIn>
 
-        {/* Right — values */}
-        <div className="lg:col-span-8">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-0 divide-y divide-[var(--color-border)] sm:divide-y-0">
-            {values.map((value, i) => (
-              <FadeIn key={value.id} delay={0.05 * i}>
-                <div
-                  className="py-8 pr-8 border-b border-[var(--color-border)] sm:border-r last:border-r-0 sm:last:border-r sm:[&:nth-child(2n)]:border-r-0"
-                >
-                  <span className="text-index text-[var(--color-secondary)] mb-4 block">{value.number}</span>
-                  <h3 className="text-subheading mb-3">{t(value.title)}</h3>
-                  <p className="text-body text-[var(--color-muted)] leading-relaxed text-sm">
-                    {t(value.description)}
-                  </p>
-                </div>
-              </FadeIn>
-            ))}
+          {/* Right — values */}
+          <div className="lg:col-span-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-0 divide-y divide-[var(--color-border)] sm:divide-y-0">
+              {values.map((value, i) => (
+                <FadeIn key={value.id} delay={0.05 * i}>
+                  <div
+                    className="py-8 pr-8 border-b border-[var(--color-border)] sm:border-r last:border-r-0 sm:last:border-r sm:[&:nth-child(2n)]:border-r-0"
+                  >
+                    <span className="text-index text-[var(--color-secondary)] mb-4 block">{value.number}</span>
+                    <h3 className="text-subheading mb-3">{t(value.title)}</h3>
+                    <p className="text-body text-[var(--color-muted)] leading-relaxed text-sm">
+                      {t(value.description)}
+                    </p>
+                  </div>
+                </FadeIn>
+              ))}
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
   );
 };
 
@@ -473,70 +472,70 @@ const SupplySection = () => {
 const CustomerSection = () => {
   const { t } = useTranslation();
   return (
-  <section className="section-border-top" style={{ backgroundColor: 'var(--color-background)' }}>
-    <div className="container section-padding">
-      <FadeIn>
-        <SectionHeading
-          eyebrow={t("Who we serve")}
-          title={t("Built around the way projects actually work.")}
-          description={t("SABIX works with procurement teams, contractors, factories and government projects — where coordinating multiple suppliers adds unnecessary complexity.")}
-          className="mb-16 max-w-2xl"
-        />
-      </FadeIn>
-
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
-        {/* Customer types list */}
+    <section className="section-border-top" style={{ backgroundColor: 'var(--color-background)' }}>
+      <div className="container section-padding">
         <FadeIn>
-          <div className="flex flex-col divide-y divide-[var(--color-border)]">
-            {customerTypes.map((ct) => (
-              <div key={ct.id} className="py-5 flex items-start gap-5 group">
-                <span
-                  className="flex-shrink-0 w-1.5 h-1.5 rounded-full mt-2"
-                  style={{ backgroundColor: 'var(--color-secondary)' }}
-                  aria-hidden="true"
-                />
-                <div>
-                  <h3 className="text-subheading text-sm font-semibold mb-1">{t(ct.title)}</h3>
-                  <p className="text-body text-sm text-[var(--color-muted)]">{t(ct.description)}</p>
+          <SectionHeading
+            eyebrow={t("Who we serve")}
+            title={t("Built around the way projects actually work.")}
+            description={t("SABIX works with procurement teams, contractors, factories and government projects — where coordinating multiple suppliers adds unnecessary complexity.")}
+            className="mb-16 max-w-2xl"
+          />
+        </FadeIn>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+          {/* Customer types list */}
+          <FadeIn>
+            <div className="flex flex-col divide-y divide-[var(--color-border)]">
+              {customerTypes.map((ct) => (
+                <div key={ct.id} className="py-5 flex items-start gap-5 group">
+                  <span
+                    className="flex-shrink-0 w-1.5 h-1.5 rounded-full mt-2"
+                    style={{ backgroundColor: 'var(--color-secondary)' }}
+                    aria-hidden="true"
+                  />
+                  <div>
+                    <h3 className="text-subheading text-sm font-semibold mb-1">{t(ct.title)}</h3>
+                    <p className="text-body text-sm text-[var(--color-muted)]">{t(ct.description)}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </FadeIn>
+
+          {/* Procurement contrast */}
+          <FadeIn delay={0.1}>
+            <div className="grid grid-cols-2 gap-px" style={{ backgroundColor: 'var(--color-border)' }}>
+              {/* Problem column */}
+              <div className="p-8" style={{ backgroundColor: 'var(--color-background)' }}>
+                <p className="text-eyebrow text-[var(--color-muted)] mb-6">{t("Without SABIX")}</p>
+                <div className="flex flex-col gap-4">
+                  {procurementProblem.map((item, i) => (
+                    <div key={i} className="flex items-start gap-3">
+                      <span className="flex-shrink-0 text-[var(--color-muted)] mt-0.5 text-xs">↓</span>
+                      <span className="text-sm text-[var(--color-muted)]">{t(item)}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
-            ))}
-          </div>
-        </FadeIn>
 
-        {/* Procurement contrast */}
-        <FadeIn delay={0.1}>
-          <div className="grid grid-cols-2 gap-px" style={{ backgroundColor: 'var(--color-border)' }}>
-            {/* Problem column */}
-            <div className="p-8" style={{ backgroundColor: 'var(--color-background)' }}>
-              <p className="text-eyebrow text-[var(--color-muted)] mb-6">{t("Without SABIX")}</p>
-              <div className="flex flex-col gap-4">
-                {procurementProblem.map((item, i) => (
-                  <div key={i} className="flex items-start gap-3">
-                    <span className="flex-shrink-0 text-[var(--color-muted)] mt-0.5 text-xs">↓</span>
-                    <span className="text-sm text-[var(--color-muted)]">{t(item)}</span>
-                  </div>
-                ))}
+              {/* Solution column */}
+              <div className="p-8" style={{ backgroundColor: 'var(--color-primary)' }}>
+                <p className="text-eyebrow mb-6" style={{ color: 'var(--color-secondary)' }}>{t("With SABIX")}</p>
+                <div className="flex flex-col gap-4">
+                  {procurementSolution.map((item, i) => (
+                    <div key={i} className="flex items-start gap-3">
+                      <span className="flex-shrink-0 mt-0.5 text-xs" style={{ color: 'var(--color-secondary)' }}>↓</span>
+                      <span className="text-sm text-white/75">{t(item)}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
-
-            {/* Solution column */}
-            <div className="p-8" style={{ backgroundColor: 'var(--color-primary)' }}>
-              <p className="text-eyebrow mb-6" style={{ color: 'var(--color-secondary)' }}>{t("With SABIX")}</p>
-              <div className="flex flex-col gap-4">
-                {procurementSolution.map((item, i) => (
-                  <div key={i} className="flex items-start gap-3">
-                    <span className="flex-shrink-0 mt-0.5 text-xs" style={{ color: 'var(--color-secondary)' }}>↓</span>
-                    <span className="text-sm text-white/75">{t(item)}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </FadeIn>
+          </FadeIn>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
   );
 };
 
@@ -620,39 +619,39 @@ const PresenceSection = () => {
 const QuoteSection = () => {
   const { t } = useTranslation();
   return (
-  <section id="quote" className="section-border-top" style={{ backgroundColor: 'var(--color-surface)' }}>
-    <div className="container section-padding">
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
-        <FadeIn className="lg:col-span-4">
-          <SectionHeading
-            eyebrow={t("Get in touch")}
-            title={t("Tell us what your project needs.")}
-            description={t("Our team will work with you to identify and supply the appropriate solution — from standard hardware to project-specific requirements.")}
-          />
-        </FadeIn>
-        <FadeIn delay={0.1} className="lg:col-span-7 lg:col-start-6">
-          <div className="relative">
-            {/* Watermark */}
-            <div
-              className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden"
-              aria-hidden="true"
-            >
-              <img
-                src="/assets/images/logo.jpeg"
-                alt=""
-                className="w-72 h-72 object-contain select-none"
-                style={{ opacity: 0.04, filter: 'grayscale(100%)' }}
-              />
+    <section id="quote" className="section-border-top" style={{ backgroundColor: 'var(--color-surface)' }}>
+      <div className="container section-padding">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
+          <FadeIn className="lg:col-span-4">
+            <SectionHeading
+              eyebrow={t("Get in touch")}
+              title={t("Tell us what your project needs.")}
+              description={t("Our team will work with you to identify and supply the appropriate solution — from standard hardware to project-specific requirements.")}
+            />
+          </FadeIn>
+          <FadeIn delay={0.1} className="lg:col-span-7 lg:col-start-6">
+            <div className="relative">
+              {/* Watermark */}
+              <div
+                className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden"
+                aria-hidden="true"
+              >
+                <img
+                  src="/assets/images/logo.jpeg"
+                  alt=""
+                  className="w-72 h-72 object-contain select-none"
+                  style={{ opacity: 0.04, filter: 'grayscale(100%)' }}
+                />
+              </div>
+              {/* Actual form */}
+              <div className="relative z-10">
+                <QuoteForm />
+              </div>
             </div>
-            {/* Actual form */}
-            <div className="relative z-10">
-              <QuoteForm />
-            </div>
-          </div>
-        </FadeIn>
+          </FadeIn>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
   );
 };
 
@@ -660,27 +659,27 @@ const QuoteSection = () => {
 const Home = () => {
   const { t } = useTranslation();
   return (
-  <>
-    <Hero />
-    <PunchlineSection />
-    <DomainsSection />
-    <ValuesSection />
-    <SupplySection />
-    <CustomerSection />
-    <PresenceSection />
-    <QuoteSection />
-    <CTASection
-      id="home-final-cta"
-      eyebrow={t("Ready to source")}
-      headline={t("Have a requirement?")}
-      subheadline={t("Let's source it.")}
-      body={t("Tell us what your project needs. Our team will work with you to identify and supply the appropriate solution.")}
-      primaryLabel={t("Request a Quote")}
-      primaryHref="#quote"
-      secondaryLabel={t("Contact SABIX")}
-      secondaryTo="/contact"
-    />
-  </>
+    <>
+      <Hero />
+      <PunchlineSection />
+      <DomainsSection />
+      <ValuesSection />
+      <SupplySection />
+      <CustomerSection />
+      <PresenceSection />
+      <QuoteSection />
+      <CTASection
+        id="home-final-cta"
+        eyebrow={t("Ready to source")}
+        headline={t("Have a requirement?")}
+        subheadline={t("Let's source it.")}
+        body={t("Tell us what your project needs. Our team will work with you to identify and supply the appropriate solution.")}
+        primaryLabel={t("Request a Quote")}
+        primaryHref="#quote"
+        secondaryLabel={t("Contact SABIX")}
+        secondaryTo="/contact"
+      />
+    </>
   );
 };
 
